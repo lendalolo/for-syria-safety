@@ -22,7 +22,14 @@ class UpdateTeamReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "team_id"=>["sometimes",'exists:teams,id'],
+            "report_id"=>["sometimes",'exists:reports,id'],
+            "date"=>["sometimes",'date'],
+            "status"=>["sometimes",'enum {
+            completed ;
+            uncompleted ;
+            working on ;
+            }'],
         ];
     }
 }

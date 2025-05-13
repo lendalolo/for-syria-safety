@@ -22,7 +22,12 @@ class StoreTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name"=> ['required','string','max:255'],
+            "status"=> ['required','enum  {
+                busy ;
+                free ;
+            }','max:255'],
+
         ];
     }
 }

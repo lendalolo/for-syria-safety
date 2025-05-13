@@ -22,7 +22,14 @@ class StoreTeamReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "team_id"=>["required",'exists:teams,id'],
+            "report_id"=>["required",'exists:reports,id'],
+            "date"=>["required",'date'],
+            "status"=>["required",'enum {
+                completed ;
+                uncompleted ;
+                working on ;
+            }'],
         ];
     }
 }

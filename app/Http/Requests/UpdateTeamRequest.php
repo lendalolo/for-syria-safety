@@ -22,7 +22,11 @@ class UpdateTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+                        "name"=> ['sometimes','string','max:255'],
+                        "status"=> ['sometimes','enum {
+                        busy ;
+                        free ;
+                        }','max:255'],
         ];
     }
 }

@@ -22,7 +22,12 @@ class UpdateCompaignRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+                "title"=>['sometimes','string','max:255'],
+                "description"=>['sometimes','string'],
+                "start_date"=>['sometimes','date'],
+                "end_date"=>['sometimes','date'],
+                "location_id"=>['sometimes','exists:locations,id'],
+                "team_id"=>['sometimes','exists:teams,id'],
         ];
     }
 }
