@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\Adminmiddleware;
+use App\Http\Middleware\Membermiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
           $middleware->alias([
           'is_admin'=>Adminmiddleware::class,
-        //   'is_user'=>Authenticate::class,
+          'is_member'=>Membermiddleware::class,
           ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -29,6 +29,9 @@ class User extends Authenticatable implements JWTSubject
     public function isUser(){
         return $this->role==='user';
     }
+    public function isMember(){
+    return $this->role==='member';
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
