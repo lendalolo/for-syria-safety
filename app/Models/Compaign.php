@@ -19,5 +19,4 @@ class Compaign extends Model
  return $this->belongsTo(Team::class);
  }
 
-
 }

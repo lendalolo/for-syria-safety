@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
@@ -13,7 +14,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $team = Team::with('teamPosition','comppaigns','users','teamReport')->get();
+        return response()->json(['teams' => $team], 200);
     }
 
     /**
@@ -21,7 +23,8 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        //
+        $team = Team::create($request->validated());
+        return response()->json(['team' => $team]);
     }
 
     /**
@@ -29,7 +32,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return response()->json(['teams' => $team->load('teamPosition','comppaigns','users','teamReport')], 200);
     }
 
     /**
@@ -37,7 +40,8 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        //
+        $team->update($request->validated());
+        return response()->json(['reward' => $team]);
     }
 
     /**
@@ -45,6 +49,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return response()->json(['status' => 'success']);
     }
 }

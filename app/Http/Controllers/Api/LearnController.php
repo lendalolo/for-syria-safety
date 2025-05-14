@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Learn;
 use App\Http\Requests\StoreLearnRequest;
 use App\Http\Requests\UpdateLearnRequest;
@@ -13,7 +14,8 @@ class LearnController extends Controller
      */
     public function index()
     {
-        //
+        $learn = Learn::all();
+        return response()->json(['learn' => $learn], 200);
     }
 
     /**
@@ -21,7 +23,8 @@ class LearnController extends Controller
      */
     public function store(StoreLearnRequest $request)
     {
-        //
+        $learn = Learn::create($request->validated());
+        return response()->json(['teamPosition' => $learn]);
     }
 
     /**
@@ -29,7 +32,7 @@ class LearnController extends Controller
      */
     public function show(Learn $learn)
     {
-        //
+        return response()->json(['learn' => $learn], 200);
     }
 
     /**
@@ -37,7 +40,8 @@ class LearnController extends Controller
      */
     public function update(UpdateLearnRequest $request, Learn $learn)
     {
-        //
+        $learn->update($request->validated());
+        return response()->json(['learn' => $learn]);
     }
 
     /**
@@ -45,6 +49,7 @@ class LearnController extends Controller
      */
     public function destroy(Learn $learn)
     {
-        //
+        $learn->delete();
+        return response()->json(['status' => 'success']);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Reward;
 use App\Http\Requests\StoreRewardRequest;
 use App\Http\Requests\UpdateRewardRequest;
@@ -13,7 +14,8 @@ class RewardController extends Controller
      */
     public function index()
     {
-        //
+        $reward = Reward::with('report')->get();
+        return response()->json(['reward' => $reward], 200);
     }
 
     /**
@@ -21,7 +23,8 @@ class RewardController extends Controller
      */
     public function store(StoreRewardRequest $request)
     {
-        //
+        $reward = Reward::create($request->validated());
+        return response()->json(['reward' => $reward]);
     }
 
     /**
@@ -29,7 +32,7 @@ class RewardController extends Controller
      */
     public function show(Reward $reward)
     {
-        //
+        return response()->json(['teams' => $reward->load('report')], 200);
     }
 
     /**
@@ -37,7 +40,8 @@ class RewardController extends Controller
      */
     public function update(UpdateRewardRequest $request, Reward $reward)
     {
-        //
+        $reward->update($request->validated());
+        return response()->json(['reward' => $reward]);
     }
 
     /**
@@ -45,6 +49,7 @@ class RewardController extends Controller
      */
     public function destroy(Reward $reward)
     {
-        //
+        $reward->delete();
+        return response()->json(['status' => 'success']);
     }
 }

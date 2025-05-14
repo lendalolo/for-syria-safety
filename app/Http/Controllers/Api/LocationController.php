@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+
 
 class LocationController extends Controller
 {
@@ -13,7 +15,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $location = Location::with('reports','compaigns')->get();
+        return response()->json(['locations' => $location]);
     }
 
     /**
@@ -21,7 +24,8 @@ class LocationController extends Controller
      */
     public function store(StoreLocationRequest $request)
     {
-        //
+        $location = Location::create($request->validated());
+        return response()->json(['locations' => $location]);
     }
 
     /**
@@ -29,7 +33,9 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+
+        return response()->json(['reports' => $location->load('reports','compaigns')], 200);
+
     }
 
     /**
@@ -37,7 +43,8 @@ class LocationController extends Controller
      */
     public function update(UpdateLocationRequest $request, Location $location)
     {
-        //
+        $location->update($request->validated());
+        return response()->json(['location' => $location]);
     }
 
     /**
@@ -45,6 +52,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+        return response()->json(['status' => 'success']);
     }
 }

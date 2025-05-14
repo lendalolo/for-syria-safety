@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Report;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
@@ -13,7 +14,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::with('user','reward','location','teamReport')->get();
+        return response()->json(['reports' => $reports], 200);
     }
 
     /**
@@ -21,7 +23,8 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        //
+        $report = Report::create($request->validated());
+        return response()->json(['report' => $report]);
     }
 
     /**
@@ -29,7 +32,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return response()->json(['reports' => $report->load('user','reward','location','teamReport')], 200);
     }
 
     /**
@@ -37,7 +40,8 @@ class ReportController extends Controller
      */
     public function update(UpdateReportRequest $request, Report $report)
     {
-        //
+        $report->update($request->validated());
+        return response()->json(['report' => $report]);
     }
 
     /**
@@ -45,6 +49,7 @@ class ReportController extends Controller
      */
     public function destroy(Report $report)
     {
-        //
+        $report->delete();
+        return response()->json(['status' => 'success']);
     }
 }

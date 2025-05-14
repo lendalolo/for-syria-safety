@@ -11,7 +11,7 @@ class StoreCompaignRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,8 @@ class StoreCompaignRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title"=>['required','string','max:255'],
-            "description"=>['required','string'],
+            "title"=>['required','string','max:255','unique:compaigns,title'],
+            "description"=>['nullable','string'],
             "start_date"=>['required','date'],
             "end_date"=>['required','date'],
             "location_id"=>['required','exists:locations,id'],

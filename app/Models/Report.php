@@ -29,10 +29,6 @@ class Report extends Model
         return $this->belongsTo(Location::class);
     }
 
-    public function teams()
-    {
-        return $this->hasMany(Team::class);
-    }
     public function teamReport()
     {
         return $this->hasMany(TeamReport::class);

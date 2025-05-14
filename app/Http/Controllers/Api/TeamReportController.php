@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\TeamReport;
 use App\Http\Requests\StoreTeamReportRequest;
 use App\Http\Requests\UpdateTeamReportRequest;
@@ -13,7 +14,8 @@ class TeamReportController extends Controller
      */
     public function index()
     {
-        //
+        $teamReport = TeamReport::with('team','report')->get();
+        return response()->json(['teamReport' => $teamReport], 200);
     }
 
     /**
@@ -21,7 +23,8 @@ class TeamReportController extends Controller
      */
     public function store(StoreTeamReportRequest $request)
     {
-        //
+        $teamReport = TeamReport::create($request->validated());
+        return response()->json(['teamReport' => $teamReport]);
     }
 
     /**
@@ -29,7 +32,8 @@ class TeamReportController extends Controller
      */
     public function show(TeamReport $teamReport)
     {
-        //
+
+        return response()->json(['teams' => $teamReport->load('team','report')], 200);
     }
 
     /**
@@ -37,7 +41,8 @@ class TeamReportController extends Controller
      */
     public function update(UpdateTeamReportRequest $request, TeamReport $teamReport)
     {
-        //
+        $teamReport->update($request->validated());
+        return response()->json(['teamReport' => $teamReport]);
     }
 
     /**
@@ -45,6 +50,7 @@ class TeamReportController extends Controller
      */
     public function destroy(TeamReport $teamReport)
     {
-        //
+        $teamReport->delete();
+        return response()->json(['status' => 'success']);
     }
 }

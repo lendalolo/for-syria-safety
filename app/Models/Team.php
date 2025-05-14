@@ -15,10 +15,6 @@ class Team extends Model
 
     protected $guarded =['id'];
 
-    public function reports()
-    {
-    return $this->hasMany(Report::class);
-    }
     public function teamReport()
     {
     return $this->hasMany(TeamReport::class);
@@ -27,6 +23,13 @@ class Team extends Model
     {
     return $this->belongsTo(TeamPosition::class);
     }
-
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+    public function comppaigns()
+    {
+        return $this->hasMany(Compaign::class);
+    }
 
 }

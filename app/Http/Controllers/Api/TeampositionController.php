@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Teamposition;
 use App\Http\Requests\StoreTeampositionRequest;
 use App\Http\Requests\UpdateTeampositionRequest;
@@ -13,7 +14,8 @@ class TeampositionController extends Controller
      */
     public function index()
     {
-        //
+        $teamPosition = Teamposition::with(['teams'])->get();
+        return response()->json(['teamPosition' => $teamPosition], 200);
     }
 
     /**
@@ -21,7 +23,8 @@ class TeampositionController extends Controller
      */
     public function store(StoreTeampositionRequest $request)
     {
-        //
+        $teamPosition = Teamposition::create($request->validated());
+        return response()->json(['teamPosition' => $teamPosition->load('teams')], 200);
     }
 
     /**
@@ -29,7 +32,7 @@ class TeampositionController extends Controller
      */
     public function show(Teamposition $teamposition)
     {
-        //
+        return response()->json(['teamposition' => $teamposition], 200);
     }
 
     /**
@@ -37,7 +40,8 @@ class TeampositionController extends Controller
      */
     public function update(UpdateTeampositionRequest $request, Teamposition $teamposition)
     {
-        //
+        $teamposition->update($request->validated());
+        return response()->json(['teamposition' => $teamposition]);
     }
 
     /**
@@ -45,6 +49,7 @@ class TeampositionController extends Controller
      */
     public function destroy(Teamposition $teamposition)
     {
-        //
+        $teamposition->delete();
+        return response()->json(['status' => 'success']);
     }
 }

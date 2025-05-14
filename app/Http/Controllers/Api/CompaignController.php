@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Compaign;
 use App\Http\Requests\StoreCompaignRequest;
 use App\Http\Requests\UpdateCompaignRequest;
@@ -13,7 +14,8 @@ class CompaignController extends Controller
      */
     public function index()
     {
-        //
+        $campaign = Compaign::with(['team','location'])->get();
+        return response()->json(['campaign' => $campaign], 200);
     }
 
     /**
@@ -21,7 +23,8 @@ class CompaignController extends Controller
      */
     public function store(StoreCompaignRequest $request)
     {
-        //
+        $campaign = Compaign::create($request->validated());
+        return response()->json(['campaign' => $campaign]);
     }
 
     /**
@@ -29,7 +32,7 @@ class CompaignController extends Controller
      */
     public function show(Compaign $compaign)
     {
-        //
+        return response()->json(['campaign' => $compaign->load('team','location')], 200);
     }
 
     /**
@@ -37,7 +40,8 @@ class CompaignController extends Controller
      */
     public function update(UpdateCompaignRequest $request, Compaign $compaign)
     {
-        //
+        $compaign->update($request->validated());
+        return response()->json(['campaign' => $compaign]);
     }
 
     /**
@@ -45,6 +49,7 @@ class CompaignController extends Controller
      */
     public function destroy(Compaign $compaign)
     {
-        //
+        $compaign->delete();
+        return response()->json(['status' => 'success']);
     }
 }
