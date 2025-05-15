@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Report;
 use App\Models\TeamPosition;
 use App\Models\TeamReport;
+use App\Models\Unit;
 
 class Team extends Model
 {
     /** @use HasFactory<\Database\Factories\TeamFactory> */
     use HasFactory;
+    public function unit()
+    {
+    return $this->belongsTo(Unit::class);
+    }
 
     protected $guarded =['id'];
 
