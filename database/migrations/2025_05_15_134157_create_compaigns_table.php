@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->foreignId('location_id')->constrained('locations');
-            $table->foreignId('team_id')->constrained('teams');
+            $table->string('article');
+            $table->string('video');
+            $table->foreignId('step_id')->constrained('steps')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('location_id')->constrained('locations')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

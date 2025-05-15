@@ -21,6 +21,9 @@ return new class extends Migration
             $table->String('address')->nullable();
             $table->enum('gender', ['female', 'male' ]);
             $table->string('password');
+            $table->string('position');
+            $table->string('technical_skills');
+            $table->string('field_experiance');
             $table->rememberToken();
             $table->timestamps();
         });

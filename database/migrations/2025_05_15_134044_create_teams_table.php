@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('lat');
-            $table->string('lon');
-            $table->enum('status', ['safe', 'danger', 'warning'])->default('danger');
+            $table->string('compaigns_num');
+            $table->string('areas_examined');
+            $table->foreignId('unit_id')->constrained('units')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('status', ['busy','free'])->default('free');
+            $table->string('level');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('teams');
     }
 };
