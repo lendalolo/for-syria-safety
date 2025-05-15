@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Adminmiddleware
@@ -15,9 +16,9 @@ class Adminmiddleware
      */
         public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->isAdmin()){
-        return $next($request);
-    }
+        if (auth()->guard('sanctum')->check() && auth()->guard('sanctum')->user()->isAdmin()){
+          return $next($request);
+        }
     return response()->json(['message'=>'Forbidden'],403);
 
     }

@@ -20,10 +20,10 @@ return new class extends Migration
             $table->String('phone number')->nullable();
             $table->String('address')->nullable();
             $table->enum('gender', ['female', 'male' ]);
-            $table->string('password');
-            $table->string('position');
-            $table->string('technical_skills');
-            $table->string('field_experiance');
+            $table->string('password')->nullable();
+            $table->string('position')->nullable();
+            $table->string('technical_skills')->nullable();
+            $table->string('field_experiance')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

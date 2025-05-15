@@ -18,6 +18,6 @@ class Membermiddleware
         If(auth()->check() && auth()->user()->isMember()){
         return $next($request);
         }
-        return response()->json(['message'=>'Forbidden',403]);
+        return response()->json(['message'=>'Forbidden'],403);
     }
 }

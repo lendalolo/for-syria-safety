@@ -12,21 +12,16 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
+         $credentials = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        $credentials = $request->only('email', 'password');
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
-        }
 
+
+        if (Auth::attempt($credentials)) {
         $user = Auth::user();
+        $token = $user->createToken('auth-token')->plainTextToken;
         return response()->json([
             'status' => 'success',
             'user' => $user,
@@ -35,6 +30,12 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
+        }else{
+                return response()->json([
+                        'status' => 'error',
+                        'message' => 'Unauthorized',
+                      ], 401);
+        }
     }
 
     public function register(Request $request)
@@ -51,7 +52,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::login($user);
+        $token = $user->createToken('auth-token')->plainTextToken;
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
@@ -63,9 +64,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
+        $request->user()->currentAccessToken()->delete();
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully logged out',
