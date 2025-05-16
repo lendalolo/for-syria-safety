@@ -15,7 +15,6 @@ class AuthController extends Controller
          $credentials = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
-             'gender'=> 'required|string|in:male,female',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -43,6 +42,8 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+             'gender'=> 'required|string|in:male,female',
+
         ]);
 
         $user = User::create([
