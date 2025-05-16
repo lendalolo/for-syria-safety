@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ToolCompaign;
-use App\Models\Compaign;
+
 
 class Tools extends Model
 {

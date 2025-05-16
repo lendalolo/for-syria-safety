@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStepsRequest;
 use App\Http\Requests\UpdateStepsRequest;
 use App\Models\Steps;
 use App\Models\Tools;
-use Illuminate\Http\Request;
 
 class StepController extends Controller
 {
