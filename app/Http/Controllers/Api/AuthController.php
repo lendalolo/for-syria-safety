@@ -15,9 +15,8 @@ class AuthController extends Controller
          $credentials = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
+             'gender'=> 'required|string|in:male,female',
         ]);
-
-
 
         if (Auth::attempt($credentials)) {
         $user = Auth::user();

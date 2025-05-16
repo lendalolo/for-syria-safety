@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -52,5 +53,10 @@ class TeamController extends Controller
     {
         $team->delete();
         return response()->json(['status' => 'success']);
+    }
+    public function myTeams( int $id)
+    { $user_Id = Auth::user()->id;
+        $team = Team::with('teamPosition','comppaigns','users','teamReport')->get()->where('user_id', $user_Id);
+        return response()->json(['teams' => $team], 200);
     }
 }

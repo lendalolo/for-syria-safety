@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CompaignController;
+
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamReportController;
 use App\Http\Controllers\Api\ReportController;
@@ -10,10 +11,12 @@ use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\TeampositionController;
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\AdminMiddleware;
+
+
+Route::post('register', [AuthController::class, 'register']);
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
+
     Route::post('logout', [AuthController::class, 'logout'])
         ->middleware('auth:sanctum');
     Route::post('refresh', [AuthController::class, 'refresh'])
@@ -28,14 +31,16 @@ return response()->json(['message'=>'hello user']);
 
 //admin
 Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(){
-Route::apiResource('compaigns',CompaignController::class);
-Route::apiResource('teams',TeamController::class);
-Route::apiResource('reports',ReportController::class);
-Route::apiResource('learns',LearnController::class);
-Route::apiResource('rewards',RewardController::class);
-Route::apiResource('locations',LocationController::class);
-Route::apiResource('teampositions',TeampositionController::class);
-Route::apiResource('teamReports',TeamReportController::class);
+    Route::apiResource('compaigns',CompaignController::class);
+    Route::apiResource('teams',TeamController::class);
+    Route::apiResource('reports',ReportController::class);
+    Route::apiResource('learns',LearnController::class);
+    Route::apiResource('rewards',RewardController::class);
+    Route::apiResource('locations',LocationController::class);
+    Route::apiResource('teampositions',TeampositionController::class);
+    Route::apiResource('teamReports',TeamReportController::class);
+  Route::get('myTeams',[TeamController::class]);
+
 
 });
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->enum('role',["admin","user","member"])->default("user");
             $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('team_id')->nullable()->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
             $table->String('phone number')->nullable();
             $table->String('address')->nullable();
             $table->enum('gender', ['female', 'male' ]);
