@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+
 use App\Models\Compaign;
 use App\Http\Requests\StoreCompaignRequest;
 use App\Http\Requests\UpdateCompaignRequest;
+use Illuminate\Routing\Controller;
 
 class CompaignController extends Controller
 {

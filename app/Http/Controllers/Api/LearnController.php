@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Learn;
 use App\Http\Requests\StoreLearnRequest;
 use App\Http\Requests\UpdateLearnRequest;
+use Illuminate\Routing\Controller;
 
 class LearnController extends Controller
 {

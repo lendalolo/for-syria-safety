@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CompaignController;
+use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamReportController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\LearnController;
@@ -20,7 +21,6 @@ Route::group(['prefix' => 'auth'], function () {
 });
 Route::middleware('auth:sanctum')->group(function(){
    Route::get('/user',function(){
-            return ;
 return response()->json(['message'=>'hello user']);
 
     });
@@ -30,14 +30,14 @@ return response()->json(['message'=>'hello user']);
 Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(){
 
 
-Route::resource('/compaigns',CompaignController::class);
-Route::resource('/teams',TeamController::class);
-Route::resource('/reports',ReportController::class);
-Route::resource('/learns',LearnController::class);
-Route::resource('/rewards',RewardController::class);
-Route::resource('/locations',LocationController::class);
-Route::resource('/teampositions',TeampositionController::class);
-Route::resource('/team_reports',TeamReportController::class);
+Route::apiResource('compaigns',CompaignController::class);
+Route::apiResource('teams',TeamController::class);
+Route::apiResource('reports',ReportController::class);
+Route::apiResource('learns',LearnController::class);
+Route::apiResource('rewards',RewardController::class);
+Route::apiResource('locations',LocationController::class);
+Route::apiResource('teampositions',TeampositionController::class);
+Route::apiResource('teamReports',TeamReportController::class);
 
 });
 

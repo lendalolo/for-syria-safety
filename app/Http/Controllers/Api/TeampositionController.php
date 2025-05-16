@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+
 use App\Models\Teamposition;
 use App\Http\Requests\StoreTeampositionRequest;
 use App\Http\Requests\UpdateTeampositionRequest;
+use Illuminate\Routing\Controller;
 
 class TeampositionController extends Controller
 {

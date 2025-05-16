@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\TeamReport;
 use App\Http\Requests\StoreTeamReportRequest;
 use App\Http\Requests\UpdateTeamReportRequest;
+use Illuminate\Routing\Controller;
 
 class TeamReportController extends Controller
 {
