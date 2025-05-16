@@ -43,7 +43,7 @@ class TeamController extends Controller
     public function update(UpdateTeamRequest $request, Team $team)
     {
         $team->update($request->validated());
-        return response()->json(['reward' => $team]);
+        return response()->json(['team' => $team]);
     }
 
     /**
@@ -54,7 +54,7 @@ class TeamController extends Controller
         $team->delete();
         return response()->json(['status' => 'success']);
     }
-    public function myTeams( int $id)
+    public function myTeams( )
     { $user_Id = Auth::user()->id;
         $team = Team::with('teamPosition','comppaigns','users','teamReport')->get()->where('user_id', $user_Id);
         return response()->json(['teams' => $team], 200);

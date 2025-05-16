@@ -39,7 +39,7 @@ Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(
     Route::apiResource('locations',LocationController::class);
     Route::apiResource('teampositions',TeampositionController::class);
     Route::apiResource('teamReports',TeamReportController::class);
-  Route::get('myTeams',[TeamController::class]);
+  Route::get('myTeams',[TeamController::class,'myTeams']);
 
 
 });
