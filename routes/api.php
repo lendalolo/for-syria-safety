@@ -28,8 +28,6 @@ return response()->json(['message'=>'hello user']);
 
 //admin
 Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(){
-
-
 Route::apiResource('compaigns',CompaignController::class);
 Route::apiResource('teams',TeamController::class);
 Route::apiResource('reports',ReportController::class);
