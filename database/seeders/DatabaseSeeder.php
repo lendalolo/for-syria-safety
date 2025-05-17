@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
+     use WithoutModelEvents;
     /**
      * Seed the application's database.
      */
@@ -16,13 +17,17 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             LocationSeeder::class,
-            CompaignSeeder::class,
+            UnitSeeder::class,
+            ObjectiveSeeder::class,
+            ToolSeeder::class,
+            StepSeeder::class,
             LearnSeeder::class,
-            ReportSeeder::class,
-            RewardSeeder::class,
+            OrganizationSeeder::class,
             TeampositionSeeder::class,
             TeamSeeder::class,
-            TeamReportSeeder::class,
+            CompaignSeeder::class,
+            ReportSeeder::class,
+            RewardSeeder::class,
         ]);
         // User::factory()->create([
         //     'name' => 'Test User',

@@ -12,9 +12,6 @@ class TeampositionSeeder extends Seeder
      */
     public function run(): void
     {
-       Teamposition::create([
-       "description"=>"description",
-       "name"=>"name",
-       ]);
+       Teamposition::factory(10)->create();
     }
 }

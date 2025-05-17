@@ -13,14 +13,6 @@ class CompaignSeeder extends Seeder
      */
     public function run(): void
     {
-       Compaign::create([
-       "name"=>"name",
-       "compaigns_num"=>"1",
-       "areas_examined"=>"1",
-       "unit_id"=>"1",
-       "teamposition_id"=>"1",
-       "status"=>"free",
-       "level"=>"2",
-       ]);
+       Compaign::factory(12)->create();
     }
 }

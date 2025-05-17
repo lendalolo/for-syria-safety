@@ -13,10 +13,6 @@ class ReportSeeder extends Seeder
      */
     public function run(): void
     {
-       Report::create([
-       "description"=>"description",
-       "user_id"=>"1",
-       "location_id"=>"1",
-       ]);
+       Report::factory(10)->create();
     }
 }

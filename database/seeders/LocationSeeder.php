@@ -13,11 +13,6 @@ class LocationSeeder extends Seeder
      */
     public function run(): void
     {
-        Location::create([
-            "name"=>"syria",
-            "lat"=>"33",
-            "lon"=>"37",
-            "status"=>"safe"
-        ]);
+        Location::factory(3)->create();
     }
 }

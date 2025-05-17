@@ -4,15 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Learn;
+use App\Models\Organization;
 
-class LearnSeeder extends Seeder
+class OrganizationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-          Learn::factory(12)->create();
+         Organization::factory(12)->create();
     }
 }

@@ -4,15 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Learn;
+use App\Models\Step;
 
-class LearnSeeder extends Seeder
+class StepSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-          Learn::factory(12)->create();
+        Step::factory(10)->create();
+
     }
 }

@@ -13,10 +13,6 @@ class RewardSeeder extends Seeder
      */
     public function run(): void
     {
-       Reward::create([
-       "description"=>"description",
-       "point"=>"type",
-       "report_id"=>"1",
-       ]);
+       Reward::factory(10)->create();
     }
 }

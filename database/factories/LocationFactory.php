@@ -17,7 +17,10 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+                        "name"=>$this->faker->title,
+                        "lat"=>$this->faker->randomNumber,
+                        "lon"=>$this->faker->randomNumber,
+                        "status"=>'safe'
         ];
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Location;
 use App\Models\ToolCompaign;
 use App\Models\Tool;
+use App\Models\Step;
 use App\Models\Organization;
 use App\Models\Team;
 use App\Models\OrganizationCompaign;
@@ -33,5 +34,8 @@ class Compaign extends Model
  }
  public function organizationCompaign(){
  return $this->hasMany(OrganizationCompaign::class);
+ }
+ public function step(){
+ return $this->belongsTo(Step::class);
  }
 }

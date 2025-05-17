@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Teamposition>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tool>
  */
-class TeampositionFactory extends Factory
+class ToolFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class TeampositionFactory extends Factory
     public function definition(): array
     {
         return [
-                                  "name"=>$this->faker->title,
-                                  "description"=>$this->faker->text,
-        ];
+            "name"=>$this->faker->title,
+         ];
     }
 }
