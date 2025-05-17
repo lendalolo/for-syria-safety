@@ -25,6 +25,7 @@ class UpdateLearnRequest extends FormRequest
                 "title"=>['sometimes','string','max:255'],
                 "type"=>['nullable','string','max:255'],
                 "description"=>['nullable','string'],
+                "objective_id"=>['sometimes','exists:objectives,id'],
         ];
     }
 }

@@ -22,9 +22,9 @@ class UpdateReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-                        "description"=>['required','string'],
-                        "user_id"=>['required','exists:users,id'],
-                        "location_id"=>['required','exists:locations,id'],
+                        "description"=>['sometimes','string'],
+                        "user_id"=>['sometimes','exists:users,id'],
+                        "location_id"=>['sometimes','exists:locations,id'],
         ];
     }
 }
