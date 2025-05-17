@@ -15,6 +15,7 @@ class Compaign extends Model
 {
     /** @use HasFactory<\Database\Factories\CompaignFactory> */
     use HasFactory;
+    protected $guarded =['id'];
  public function location()
  {
  return $this->belongsTo(Location::class);
