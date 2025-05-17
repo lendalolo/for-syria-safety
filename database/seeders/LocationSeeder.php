@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Location;
 
 class LocationSeeder extends Seeder
 {
@@ -12,6 +13,11 @@ class LocationSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Location::create([
+            "name"=>"syria",
+            "lat"=>"33",
+            "lon"=>"37",
+            "status"=>"safe"
+        ]);
     }
 }

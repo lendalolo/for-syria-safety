@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\Teamposition;
 class TeampositionSeeder extends Seeder
 {
     /**
@@ -12,6 +12,9 @@ class TeampositionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+       Teamposition::create([
+       "description"=>"description",
+       "name"=>"name",
+       ]);
     }
 }

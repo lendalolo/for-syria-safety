@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class TeamReportSeeder extends Seeder
 {
     /**
@@ -12,6 +13,6 @@ class TeamReportSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+
     }
 }

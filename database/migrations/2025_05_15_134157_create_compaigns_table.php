@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('compaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->string('description')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
