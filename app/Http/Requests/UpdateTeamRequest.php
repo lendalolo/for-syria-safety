@@ -23,10 +23,14 @@ class UpdateTeamRequest extends FormRequest
     {
         return [
                         "name"=> ['sometimes','string','max:255'],
-                        "status"=> ['sometimes','enum {
-                        busy ;
-                        free ;
-                        }','max:255'],
+                        "status"=> 'sometimes|string|in:busy,free',
+                        "compaigns_num"=>["sometimes"],
+                         "areas_examined"=>["sometimes"],
+                         "unit_id"=>["sometimes","exists:units,id"],
+                        "teamposition_id"=>["sometimes","exists:teampositions,id"],
+                        "level"=>["sometimes"],
+
+
         ];
     }
 }

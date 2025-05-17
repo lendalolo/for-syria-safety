@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Report;
-use App\Models\TeamPosition;
+use App\Models\Teamposition;
 use App\Models\TeamReport;
 use App\Models\Unit;
 

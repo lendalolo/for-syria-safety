@@ -25,11 +25,7 @@ class UpdateLocationRequest extends FormRequest
                 "name"=>['sometimes','string','max:255'],
                  "lat"=>['sometimes','string','max:255'],
                   "lon"=>['sometimes','string','max:255'],
-                  "status"=>['sometimes','enum {
-                                  safe ;
-                              warning ;
-                              danger ;
-                      }'],
+                 "status"=> 'sometimes|string|in:safe,danger,warning',
        ];
     }
 }

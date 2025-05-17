@@ -25,7 +25,7 @@ class StoreLocationRequest extends FormRequest
             "name"=>['required','string','max:255'],
             "lat"=>['required','string','max:255'],
             "lon"=>['required','string','max:255'],
-            "status"=> 'required|string|in:safe, danger, warning',
+            "status"=> 'required|string|in:safe,danger,warning',
         ];
     }
 }
