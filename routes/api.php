@@ -32,7 +32,6 @@ return response()->json(['message'=>'hello user']);
 //admin
 Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(){
 
-
 Route::apiResource('/compaigns',CompaignController::class);
 Route::apiResource('/teams',TeamController::class);
 Route::apiResource('/reports',ReportController::class);
@@ -51,6 +50,15 @@ Route::apiResource('/steps',StepController::class);
 
 Route::middleware(["auth:sanctum"])->group(function(){
     Route::apiResource('/users',UserController::class);
+    Route::apiResource('/compaigns',CompaignController::class);
+    Route::apiResource('/teams',TeamController::class);
+    Route::apiResource('/reports',ReportController::class);
+    Route::apiResource('/learns',LearnController::class);
+    Route::apiResource('/rewards',RewardController::class);
+    Route::apiResource('/locations',LocationController::class);
+    Route::apiResource('/teampositions',TeampositionController::class);
+    Route::apiResource('/team_reports',TeamReportController::class);
+    Route::apiResource('/steps',StepController::class);
 
 });
 Route::group(['prefix'=>'admin'],(function(){
