@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTeamRequest;
 // use Illuminate\Routing\Controller;
 use App\Models\Team;
 use App\Models\Teamposition;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -43,7 +44,7 @@ class TeamController extends Controller
     public function update(UpdateTeamRequest $request, Team $team)
     {
         $team->update($request->all());
-        return response()->json(['reward' => $team]);
+        return response()->json(['teams' => $team]);
     }
 
     /**
@@ -54,4 +55,5 @@ class TeamController extends Controller
         $team->delete();
         return response()->json(['status' => 'success']);
     }
+
 }

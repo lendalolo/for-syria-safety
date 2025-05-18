@@ -26,7 +26,7 @@ class LocationController extends Controller
     public function store(StoreLocationRequest $request)
     {
         $location = Location::create($request->validated());
-        return response()->json(['locations' => $location]);
+        return response()->json(['locations' => $location->load('reports','compaigns')]);
     }
 
     /**
@@ -35,7 +35,7 @@ class LocationController extends Controller
     public function show(Location $location)
     {
 
-        return response()->json(['reports' => $location->load('reports','compaigns')], 200);
+        return response()->json(['location' => $location->load('reports','compaigns')], 200);
 
     }
 
@@ -45,7 +45,7 @@ class LocationController extends Controller
     public function update(UpdateLocationRequest $request, Location $location)
     {
         $location->update($request->validated());
-        return response()->json(['location' => $location]);
+        return response()->json(['location' => $location->load('reports','compaigns')]);
     }
 
     /**

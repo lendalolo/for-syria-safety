@@ -25,7 +25,7 @@ class ReportController extends Controller
     public function store(StoreReportRequest $request)
     {
         $report = Report::create($request->validated());
-        return response()->json(['report' => $report]);
+        return response()->json(['report' => $report->load('user','reward','location','teamReport')]);
     }
 
     /**
@@ -42,7 +42,7 @@ class ReportController extends Controller
     public function update(UpdateReportRequest $request, Report $report)
     {
         $report->update($request->validated());
-        return response()->json(['report' => $report]);
+        return response()->json(['report' => $report->load('user','reward','location','teamReport')]);
     }
 
     /**

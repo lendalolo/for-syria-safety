@@ -23,8 +23,8 @@ class UpdateRewardRequest extends FormRequest
     {
         return [
              "description"=>['nullable','string'],
-             "point"=>['required','string','max:255'],
-             "report_id"=>['required','exists:reports,id']
+             "point"=>['sometimes','string','max:255'],
+             "report_id"=>['sometimes','exists:reports,id']
         ];
     }
 }

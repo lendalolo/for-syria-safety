@@ -14,7 +14,8 @@ class LearnController extends Controller
      */
     public function index()
     {
-        $learn = Learn::all();
+        //objective
+        $learn = Learn::with('objective')->get();
         return response()->json(['learn' => $learn], 200);
     }
 
@@ -24,7 +25,7 @@ class LearnController extends Controller
     public function store(StoreLearnRequest $request)
     {
         $learn = Learn::create($request->validated());
-        return response()->json(['teamPosition' => $learn]);
+        return response()->json(['teamPosition' => $learn->load('objective')], 200);
     }
 
     /**
@@ -32,7 +33,7 @@ class LearnController extends Controller
      */
     public function show(Learn $learn)
     {
-        return response()->json(['learn' => $learn], 200);
+        return response()->json(['learn' => $learn->load('objective')], 200);
     }
 
     /**
@@ -41,7 +42,7 @@ class LearnController extends Controller
     public function update(UpdateLearnRequest $request, Learn $learn)
     {
         $learn->update($request->validated());
-        return response()->json(['learn' => $learn]);
+        return response()->json(['learn' => $learn->load('objective')]);
     }
 
     /**

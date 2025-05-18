@@ -41,6 +41,8 @@ Route::apiResource('/locations',LocationController::class);
 Route::apiResource('/teampositions',TeampositionController::class);
 Route::apiResource('/team_reports',TeamReportController::class);
 Route::apiResource('/steps',StepController::class);
+    Route::apiResource('/users',\App\Http\Controllers\Api\UserController::class);
+   // Route::get('/myTeams',[TeamController::class,'myTeam']);
 
 });
 

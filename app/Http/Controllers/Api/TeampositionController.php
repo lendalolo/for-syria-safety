@@ -33,7 +33,7 @@ class TeampositionController extends Controller
      */
     public function show(Teamposition $teamposition)
     {
-        return response()->json(['teamposition' => $teamposition], 200);
+        return response()->json(['teamposition' => $teamposition->load('teams')], 200);
     }
 
     /**
@@ -42,7 +42,7 @@ class TeampositionController extends Controller
     public function update(UpdateTeampositionRequest $request, Teamposition $teamposition)
     {
         $teamposition->update($request->validated());
-        return response()->json(['teamposition' => $teamposition]);
+        return response()->json(['teamposition' => $teamposition->load('teams')]);
     }
 
     /**

@@ -24,7 +24,7 @@ class RewardController extends Controller
     public function store(StoreRewardRequest $request)
     {
         $reward = Reward::create($request->validated());
-        return response()->json(['reward' => $reward]);
+        return response()->json(['reward' => $reward->load('report')]);
     }
 
     /**
@@ -41,7 +41,7 @@ class RewardController extends Controller
     public function update(UpdateRewardRequest $request, Reward $reward)
     {
         $reward->update($request->validated());
-        return response()->json(['reward' => $reward]);
+        return response()->json(['reward' => $reward->load('report')]);
     }
 
     /**

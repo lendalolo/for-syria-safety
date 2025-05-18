@@ -24,7 +24,7 @@ class StepController extends Controller
     public function store(StoreStepRequest $request)
     {
         $step = Step::create($request->validated());
-        return response()->json(['step' => $step]);
+        return response()->json(['step' => $step->load('compaigns')]);
     }
 
     /**
@@ -41,7 +41,7 @@ class StepController extends Controller
     public function update(UpdateStepRequest $request, Step $step)
     {
         $step->update($request->validated());
-        return response()->json(['step' => $step]);
+        return response()->json(['step' => $step->load('compaigns')]);
     }
 
     /**
