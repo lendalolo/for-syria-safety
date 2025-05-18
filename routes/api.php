@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\TeampositionController;
 use App\Http\Controllers\Api\StepController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 Route::group(['prefix' => 'auth'], function () {
@@ -41,15 +42,15 @@ Route::apiResource('/locations',LocationController::class);
 Route::apiResource('/teampositions',TeampositionController::class);
 Route::apiResource('/team_reports',TeamReportController::class);
 Route::apiResource('/steps',StepController::class);
-    Route::apiResource('/users',\App\Http\Controllers\Api\UserController::class);
+
    // Route::get('/myTeams',[TeamController::class,'myTeam']);
 
 });
 
 //member
 
-Route::middleware(["auth:sanctum",'is_member'])->group(function(){
-
+Route::middleware(["auth:sanctum"])->group(function(){
+    Route::apiResource('/users',UserController::class);
 
 });
 Route::group(['prefix'=>'admin'],(function(){
