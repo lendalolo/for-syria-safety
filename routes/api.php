@@ -49,7 +49,7 @@ Route::apiResource('/steps',StepController::class);
 //member
 
 Route::middleware(["auth:sanctum"])->group(function(){
-    Route::apiResource('/users',UserController::class);
+    Route::apiResource('/users',UserController::class)
     Route::apiResource('/compaigns',CompaignController::class);
     Route::apiResource('/teams',TeamController::class);
     Route::apiResource('/reports',ReportController::class);
@@ -61,6 +61,15 @@ Route::middleware(["auth:sanctum"])->group(function(){
     Route::apiResource('/steps',StepController::class);
 
 });
+
+Route::apiResource('/compaigns',CompaignController::class)->only(['index','show']);
+Route::apiResource('/teams',TeamController::class)->only(['index','show']);
+Route::apiResource('/reports',ReportController::class)->only(['index','show']);
+Route::apiResource('/learns',LearnController::class)->only(['index','show']);
+Route::apiResource('/rewards',RewardController::class)->only(['index','show']);
+Route::apiResource('/locations',LocationController::class)->only(['index','show']);
+Route::apiResource('/teampositions',TeampositionController::class)->only(['index','show']);
+Route::apiResource('/steps',StepController::class)->only(['index','show']);
 Route::group(['prefix'=>'admin'],(function(){
 
 }));
