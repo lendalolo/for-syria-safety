@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::with('team','reports')->get();
+        $user = User::with('team','reports','donations','tools')->get();
         return response()->json(['user' => $user], 200);
     }
 
@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json(['teams' => $user->load('team','reports')], 200);
+        return response()->json(['teams' => $user->load('team','reports','donations','tools')], 200);
     }
 
     /**

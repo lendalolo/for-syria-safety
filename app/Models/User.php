@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Team;
 use App\Models\Report;
+use App\Models\Tool;
+use App\Models\Donation;
 use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
@@ -68,7 +70,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Report::class);
     }
-
+    public function donations(){
+        return $this->hasMany(Donation::class);
+    }
+    public function tools(){
+        return $this->belongsToMany(Tool::class);
+    }
 
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.

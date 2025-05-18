@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Compaign;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\ToolCompaign;
+use App\Models\Donation;
+use App\Models\User;
 class Tool extends Model
 {
 use HasFactory;
@@ -18,5 +20,11 @@ use HasFactory;
     public function toolCompaigns()
     {
     return $this->hasMany(ToolCompaign::class);
+    }
+    public function donations(){
+        return $this->hasMany(Donation::class);
+    }
+    public function users(){
+    return $this->belongsToMany(User::class);
     }
 }

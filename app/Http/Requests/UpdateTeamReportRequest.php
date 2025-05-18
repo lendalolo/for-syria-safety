@@ -25,11 +25,8 @@ class UpdateTeamReportRequest extends FormRequest
             "team_id"=>["sometimes",'exists:teams,id'],
             "report_id"=>["sometimes",'exists:reports,id'],
             "date"=>["sometimes",'date'],
-            "status"=>["sometimes",'enum {
-            completed ;
-            uncompleted ;
-            working on ;
-            }'],
+            "status"=>["sometimes",'in:completed,uncompleted,working on']
+
         ];
     }
 }
