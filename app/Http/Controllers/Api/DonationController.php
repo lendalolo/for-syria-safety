@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDonationRequest;
 use App\Http\Requests\StoreToolRequest;
+use App\Http\Requests\UpdateDonationRequest;
 use App\Http\Requests\UpdateToolRequest;
 // use Illuminate\Routing\Controller;
 use App\Models\Donation;

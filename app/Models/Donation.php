@@ -9,6 +9,7 @@ use App\Models\User;
 
 class Donation extends Model
 {
+protected $guarded= ['id'];
     /** @use HasFactory<\Database\Factories\DonationFactory> */
     use HasFactory;
     public function tool(){

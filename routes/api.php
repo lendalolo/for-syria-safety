@@ -39,8 +39,6 @@ return response()->json(['message'=>'hello user']);
 
 //admin
 Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(){
-
-
     Route::apiResource('/compaigns',CompaignController::class);
     Route::apiResource('/teams',TeamController::class);
     Route::apiResource('/reports',ReportController::class);
@@ -91,6 +89,10 @@ Route::apiResource('/tools',ToolController::class)->only(['index','show']);
 Route::apiResource('/locations',LocationController::class)->only(['index','show']);
 Route::apiResource('/teampositions',TeampositionController::class)->only(['index','show']);
 Route::apiResource('/steps',StepController::class)->only(['index','show']);
+Route::apiResource('/donations',DonationController::class)->only(['index','show']);
+Route::apiResource('/objectives',ObjectivesController::class)->only(['index','show']);
+Route::apiResource('/tool_compaign',ToolCompaignController::class)->only(['index','show']);
+Route::apiResource('/organization_compaigns',OrganizationCompaignController::class)->only(['index','show']);
 // Route::group(['prefix'=>'admin'],(function(){
 
 // }));
