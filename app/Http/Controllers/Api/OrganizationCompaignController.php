@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+
 use App\Models\OrganizationCompaign;
 use App\Http\Requests\StoreOrganizationCompaignRequest;
 use App\Http\Requests\UpdateOrganizationCompaignRequest;
@@ -23,7 +22,7 @@ class OrganizationComapignController extends Controller
     public function store(StoreOrganizationCompaignRequest $request)
     {
         $organization_compaign = OrganizationCompaign::create($request->validated());
-        return response()->json(["organization"=>$organization_compaign]);
+        return response()->json(["organization_compaign"=>$organization_compaign]);
     }
 
     /**

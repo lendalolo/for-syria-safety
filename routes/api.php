@@ -74,20 +74,10 @@ Route::middleware(["auth:sanctum"])->group(function(){
     Route::delete('/profile',[ProfileController::class,'destroy']);
 
 
-    Route::apiResource('/compaigns',CompaignController::class);
-
-    Route::apiResource('/teams',TeamController::class);
     Route::apiResource('/reports',ReportController::class);
-    Route::apiResource('/learns',LearnController::class);
-    Route::apiResource('/rewards',RewardController::class);
-    Route::apiResource('/locations',LocationController::class);
-    Route::apiResource('/teampositions',TeampositionController::class);
-    Route::apiResource('/team_reports',TeamReportController::class);
-    Route::apiResource('/steps',StepController::class);
-    Route::apiResource('/tools',ToolController::class);
-    Route::apiResource('/donations',DonationController::class);
-    Route::apiResource('/organization_compaigns',OrganizationCompaignController::class);
+    Route::apiResource('/user',UserController::class);
 
+    Route::Put('/RegerterInTeam',[UserController::class,'RegerterInTeam']);
 
 });
 

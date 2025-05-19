@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json(['teams' => $user->load('team','reports')], 200);
+        return response()->json(['teams' => $user->load('team','reports','tools','donations')], 200);
     }
 
     /**
@@ -44,7 +44,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        return response()->json(['user' => $user->load('team','reports')]);
+        return response()->json(['user' => $user->load('team','reports','tools','donations')]);
     }
 
     /**

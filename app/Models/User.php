@@ -23,11 +23,12 @@ class User extends Authenticatable implements HasMedia
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected  $guarded = ['id'];
+//    protected $fillable = [
+//        'name',
+//        'email',
+//        'password',
+//    ];
     public function isAdmin(){
         return $this->role==='admin';
     }
