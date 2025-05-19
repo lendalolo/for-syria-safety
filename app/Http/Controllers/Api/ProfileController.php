@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Models\User;
+use App\Http\Requests\UpdateProfileRequest;
 class ProfileController extends Controller
 {
     /**
@@ -38,12 +40,60 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(UpdateProfileRequest $request)
     {
-      $user =  User::where('id', auth()->id())->update([
-        'name' => $request->name,
-        'email' => $request->email,
-        ]);
+    //   $user =  User::where('id', auth()->id())->update([
+    //     'name' => $request->name,
+    //     'email' => $request->email,
+    //     ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $user = User::where('id', auth()->id())->update($request->all());
 
       if ($request->media) {
             $user->addMediaFromRequest('media')->toMediaCollection('users');
