@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ToolController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamReportController;
 use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\OrganizationCompaignController;
 use App\Http\Controllers\Api\LearnController;
 use App\Http\Controllers\Api\RewardController;
@@ -56,6 +57,7 @@ Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(
     Route::apiResource('/objectives',ObjectivesController::class);
     Route::apiResource('/tool_compaign',ToolCompaignController::class);
     Route::apiResource('/organization_compaigns',OrganizationCompaignController::class);
+    Route::apiResource('/users',UserController::class);
 
 
    // Route::get('/myTeams',[TeamController::class,'myTeam']);
@@ -65,8 +67,15 @@ Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(
 //member
 
 Route::middleware(["auth:sanctum"])->group(function(){
-    Route::apiResource('/users',UserController::class);
+
+    //profile
+    Route::get('/profile',[ProfileController::class,'show']);
+    Route::patch('/profile',[ProfileController::class,'update']);
+    Route::delete('/profile',[ProfileController::class,'destroy']);
+
+
     Route::apiResource('/compaigns',CompaignController::class);
+
     Route::apiResource('/teams',TeamController::class);
     Route::apiResource('/reports',ReportController::class);
     Route::apiResource('/learns',LearnController::class);

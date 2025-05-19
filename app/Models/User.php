@@ -10,11 +10,13 @@ use App\Models\Team;
 use App\Models\Report;
 use App\Models\Tool;
 use App\Models\Donation;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Laravel\Sanctum\HasApiTokens;
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens,HasFactory, Notifiable;
+    use HasApiTokens,HasFactory, Notifiable,InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -57,7 +59,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('users');
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

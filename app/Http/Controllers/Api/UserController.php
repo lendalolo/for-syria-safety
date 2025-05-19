@@ -22,6 +22,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         //
@@ -38,9 +39,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+
     }
 
     /**
@@ -48,8 +49,13 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::where('id',$id)->delete();
+         return response()->json([
+                'profile' => $user,
+                'message' => 'successfully deleted!'
+            ]);
     }
+
 //    public function myTeam()
 //    {
 //        $user_id = Auth::user()->id;
