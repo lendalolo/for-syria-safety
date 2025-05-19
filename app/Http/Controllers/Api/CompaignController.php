@@ -25,6 +25,9 @@ class CompaignController extends Controller
     public function store(StoreCompaignRequest $request)
     {
         $campaign = Compaign::create($request->validated());
+        if ($request->media) {
+        $campaign->addMediaFromRequest('media')->toMediaCollection('campaigns');
+        }
         return response()->json(['campaign' => $campaign->load('team','location')]);
     }
 
@@ -42,6 +45,9 @@ class CompaignController extends Controller
     public function update(UpdateCompaignRequest $request, Compaign $compaign)
     {
         $compaign->update($request->validated());
+        if ($request->media) {
+                $campaign->addMediaFromRequest('media')->toMediaCollection('campaigns');
+        }
         return response()->json(['campaign' => $compaign->load('team','location')]);
     }
 

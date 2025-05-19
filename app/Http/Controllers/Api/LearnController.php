@@ -25,6 +25,9 @@ class LearnController extends Controller
     public function store(StoreLearnRequest $request)
     {
         $learn = Learn::create($request->validated());
+        if ($request->media) {
+        $learn->addMediaFromRequest('media')->toMediaCollection('learns');
+        }
         return response()->json(['teamPosition' => $learn->load('objective')], 200);
     }
 
@@ -42,6 +45,9 @@ class LearnController extends Controller
     public function update(UpdateLearnRequest $request, Learn $learn)
     {
         $learn->update($request->validated());
+        if ($request->media) {
+        $learn->addMediaFromRequest('media')->toMediaCollection('learns');
+        }
         return response()->json(['learn' => $learn->load('objective')]);
     }
 
