@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTeamReportRequest extends FormRequest
+class StoreOrganizationCompaignRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,14 @@ class StoreTeamReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "team_id"=>["required",'exists:teams,id'],
-            "report_id"=>["required",'exists:reports,id'],
-            "date"=>["required",'date'],
-            "status"=>["required",'in:completed,uncompleted,working on']
+            "organization_id"=>['exists:organizations,id',"required"],
+            "compaign_id"=>['exists:compaigns,id',"required"],
+            "financing_value"=>["required"],
+            "Budget"=>["required"],
+            "current_covered_areas"=>["required"],
+            "covered_areas"=>["required"],
+            "amount_paid"=>["required"],
+            "materials_num"=>["required"],
         ];
     }
 }

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Objective;
-class Learn extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Learn extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\LearnFactory> */
-    use HasFactory;
+    use HasFactory,InteractsWithMedia;
     protected $guarded =['id'];
 
 public function objective()
@@ -16,4 +18,9 @@ public function objective()
     return $this->belongsTo(Objective::class);
 }
 
+    public function registerMediaCollections():void
+    {
+    $this->addMediaCollection('learns');
+
+    }
 }

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTeamReportRequest extends FormRequest
+class UpdateDonationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,10 +22,10 @@ class StoreTeamReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "team_id"=>["required",'exists:teams,id'],
-            "report_id"=>["required",'exists:reports,id'],
-            "date"=>["required",'date'],
-            "status"=>["required",'in:completed,uncompleted,working on']
+                        "user_id"=>['sometimes','exists:users,id'],
+                        "tool_id"=>['sometimes','exists:tools,id'],
+                        "date"=>['sometimes','date'],
+                        "cost"=>['sometimes'],
         ];
     }
 }

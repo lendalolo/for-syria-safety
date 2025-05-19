@@ -15,7 +15,7 @@ class LearnController extends Controller
     public function index()
     {
         //objective
-        $learn = Learn::with('objective')->get();
+        $learn = Learn::with('objective','media')->get();
         return response()->json(['learn' => $learn], 200);
     }
 
@@ -25,7 +25,10 @@ class LearnController extends Controller
     public function store(StoreLearnRequest $request)
     {
         $learn = Learn::create($request->validated());
-        return response()->json(['teamPosition' => $learn->load('objective')], 200);
+        if ($request->media) {
+        $learn->addMediaFromRequest('media')->toMediaCollection('learns');
+        }
+        return response()->json(['learn' => $learn->load('objective','media')], 200);
     }
 
     /**
@@ -33,7 +36,7 @@ class LearnController extends Controller
      */
     public function show(Learn $learn)
     {
-        return response()->json(['learn' => $learn->load('objective')], 200);
+        return response()->json(['learn' => $learn->load('objective','media')], 200);
     }
 
     /**
@@ -42,7 +45,10 @@ class LearnController extends Controller
     public function update(UpdateLearnRequest $request, Learn $learn)
     {
         $learn->update($request->validated());
-        return response()->json(['learn' => $learn->load('objective')]);
+        if ($request->media) {
+        $learn->addMediaFromRequest('media')->toMediaCollection('learns');
+        }
+        return response()->json(['learn' => $learn->load('objective','media')]);
     }
 
     /**

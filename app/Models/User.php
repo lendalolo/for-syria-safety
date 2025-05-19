@@ -8,11 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Team;
 use App\Models\Report;
+use App\Models\Tool;
+use App\Models\Donation;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Laravel\Sanctum\HasApiTokens;
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens,HasFactory, Notifiable;
+    use HasApiTokens,HasFactory, Notifiable,InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -55,7 +59,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
+    public function registerMediaCollections():void
+    {
+        $this->addMediaCollection('users');
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -68,7 +75,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Report::class);
     }
-
+    public function donations(){
+        return $this->hasMany(Donation::class);
+    }
+    public function tools(){
+        return $this->belongsToMany(Tool::class);
+    }
 
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.

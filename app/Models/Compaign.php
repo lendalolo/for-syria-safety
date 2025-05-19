@@ -11,15 +11,21 @@ use App\Models\Step;
 use App\Models\Organization;
 use App\Models\Team;
 use App\Models\OrganizationCompaign;
-class Compaign extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Compaign extends Model implements HasMedia
 {
 
     /** @use HasFactory<\Database\Factories\CompaignFactory> */
-    use HasFactory;
+    use HasFactory,InteractsWithMedia;
     protected $guarded = ['id'];
  public function location()
  {
  return $this->belongsTo(Location::class);
+ }
+ public function registerMediaCollections():void
+ {
+ $this->addMediaCollection('compaigns');
  }
  public function team()
  {
