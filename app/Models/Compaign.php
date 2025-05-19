@@ -23,7 +23,7 @@ class Compaign extends Model implements HasMedia
  {
  return $this->belongsTo(Location::class);
  }
- public function registerMediaCollections()
+ public function registerMediaCollections():void
  {
  $this->addMediaCollection('compaigns');
  }

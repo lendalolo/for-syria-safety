@@ -17,8 +17,10 @@ public function objective()
 {
     return $this->belongsTo(Objective::class);
 }
-public function registerMediaCollections()
-{
+
+    public function registerMediaCollections():void
+    {
     $this->addMediaCollection('learns');
-}
+
+    }
 }

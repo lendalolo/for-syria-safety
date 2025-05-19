@@ -59,7 +59,7 @@ class User extends Authenticatable implements HasMedia
             'password' => 'hashed',
         ];
     }
-    public function registerMediaCollections()
+    public function registerMediaCollections():void
     {
         $this->addMediaCollection('users');
     }
