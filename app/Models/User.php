@@ -79,9 +79,9 @@ class User extends Authenticatable implements HasMedia
     public function donations(){
         return $this->hasMany(Donation::class);
     }
-    public function tools(){
-        return $this->belongsToMany(Tool::class);
-    }
+    // public function tools(){
+    //     return $this->belongsToMany(Tool::class);
+    // }
 
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.

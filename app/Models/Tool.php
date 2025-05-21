@@ -24,7 +24,7 @@ use HasFactory;
     public function donations(){
         return $this->hasMany(Donation::class);
     }
-    public function users(){
-    return $this->belongsToMany(User::class);
-    }
+    // public function users(){
+    // return $this->belongsToMany(User::class);
+    // }
 }
