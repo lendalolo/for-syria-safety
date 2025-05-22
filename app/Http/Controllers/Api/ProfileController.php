@@ -42,58 +42,10 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileRequest $request)
     {
-    //   $user =  User::where('id', auth()->id())->update([
-    //     'name' => $request->name,
-    //     'email' => $request->email,
-    //     ]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $user = User::where('id', auth()->id())->update($request->all());
+    $user = User::where('id', auth()->id())->update([
+        "name"=>$request->name,
+        "email"=>$request->email,
+    ]);
 
       if ($request->media) {
             $user->addMediaFromRequest('media')->toMediaCollection('users');

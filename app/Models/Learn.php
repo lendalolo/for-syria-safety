@@ -20,7 +20,8 @@ public function objective()
 
     public function registerMediaCollections():void
     {
-    $this->addMediaCollection('learns');
+    $this->addMediaCollection('learns')
+    ->useDisk('media');
 
     }
 }
