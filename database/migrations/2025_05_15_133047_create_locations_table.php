@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('lat');
-            $table->string('lon');
+            $table->float('lat');
+            $table->float('lon');
             $table->enum('status', ['safe', 'danger', 'warning'])->default('danger');
             $table->timestamps();
         });

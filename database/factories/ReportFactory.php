@@ -21,6 +21,7 @@ class ReportFactory extends Factory
         return [
         "description"=>$this->faker->text,
         "user_id"=>User::inRandomOrder()->first()->id,
+        "statue" =>"processing",
         "location_id"=>Location::inRandomOrder()->first()->id,
         ];
     }
