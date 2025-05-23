@@ -12,6 +12,6 @@ class Objective extends Model
 
     public function learns()
     {
-        return $this->hasMany(Learn::class);
+        return $this->belongsTo(Learn::class);
     }
 }

@@ -15,7 +15,7 @@ class Learn extends Model implements HasMedia
 
 public function objective()
 {
-    return $this->belongsTo(Objective::class);
+    return $this->hasMany(Objective::class);
 }
 
     public function registerMediaCollections():void

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('type')->nullable();
             $table->string('description')->nullable();
-            $table->foreignId('objective_id')->constrained('objectives')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

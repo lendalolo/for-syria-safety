@@ -11,11 +11,11 @@ class Organization extends Model
     use HasFactory;
     protected $guarded =['id'];
 
-    public function compaigns()
-    {
-        return $this->belongsToMany(Compaign::class);
-    }
+//    public function compaigns()
+//    {
+//        return $this->belongsToMany(Compaign::class);
+//    }
     public function organizationCompaigns(){
-        return $this->hasMany(OrganizationCompaign);
+        return $this->hasMany(OrganizationCompaign::class);
     }
 }
