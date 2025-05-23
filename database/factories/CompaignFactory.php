@@ -24,7 +24,6 @@ class CompaignFactory extends Factory
         "start_date"=>$this->faker->date,
         "end_date"=>$this->faker->date,
         "article"=>$this->faker->text,
-        "step_id"=>Step::inRandomOrder()->first()->id,
         "location_id"=>Location::inRandomOrder()->first()->id,
         "team_id"=>Team::inRandomOrder()->first()->id,
         ];

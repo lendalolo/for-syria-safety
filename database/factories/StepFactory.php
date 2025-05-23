@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Compaign;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class StepFactory extends Factory
         return [
             "name"=>$this->faker->title,
             "description"=>$this->faker->text,
+            "compaign_id"=>Compaign::inRandomOrder()->first()->id,
         ];
     }
 }

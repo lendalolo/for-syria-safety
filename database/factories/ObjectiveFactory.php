@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Learn;
+use App\Models\Objective;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class ObjectiveFactory extends Factory
     public function definition(): array
     {
         return [
-        "name"=>$this->faker->title,
+            "name"=>$this->faker->title,
+            "learn_id"=>Learn::inRandomOrder()->first()->id
         ];
     }
 }

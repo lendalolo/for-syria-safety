@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Compaign;
+use App\Models\Step;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Objective;
 /**
@@ -20,7 +22,6 @@ class LearnFactory extends Factory
                       "name"=>$this->faker->title,
                       "description"=>$this->faker->text,
                       "type"=>$this->faker->text,
-                      "objective_id"=>Objective::inRandomOrder()->first()->id
         ];
     }
 }

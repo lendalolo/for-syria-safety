@@ -18,14 +18,16 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             LocationSeeder::class,
             UnitSeeder::class,
-            ObjectiveSeeder::class,
+
             ToolSeeder::class,
-            StepSeeder::class,
+
             LearnSeeder::class,
+            ObjectiveSeeder::class,
             OrganizationSeeder::class,
             TeampositionSeeder::class,
             TeamSeeder::class,
             CompaignSeeder::class,
+            StepSeeder::class,
             ReportSeeder::class,
             RewardSeeder::class,
         ]);

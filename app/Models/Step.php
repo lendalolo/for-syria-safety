@@ -13,6 +13,6 @@ use HasFactory;
 
     public function compaigns()
     {
-        return $this->hasMany(Compaign::class);
+        return $this->belongsTo(Compaign::class);
     }
 }

@@ -44,6 +44,6 @@ class Compaign extends Model implements HasMedia
  return $this->hasMany(OrganizationCompaign::class);
  }
  public function step(){
- return $this->belongsTo(Step::class);
+ return $this->hasMany(Step::class);
  }
 }
