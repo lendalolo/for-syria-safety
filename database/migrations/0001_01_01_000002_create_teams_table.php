@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('areas_examined');
             $table->foreignId('unit_id')->constrained('units')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('teamposition_id')->constrained('teampositions')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->enum('status', ['busy','free'])->default('free');
+            $table->enum('status', ['available','busy','waiting'])->default('available');
             $table->string('level');
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $reports = Report::with('user','reward','location','teamReport')->get();
+        $reports = Report::with('user','reward','location','teamReports')->get();
         return response()->json(['reports' => $reports], 200);
     }
 
@@ -25,7 +25,7 @@ class ReportController extends Controller
     public function store(StoreReportRequest $request)
     {
         $report = Report::create($request->validated());
-        return response()->json(['report' => $report->load('user','reward','location','teamReport')]);
+        return response()->json(['report' => $report->load('user','reward','location','teamReports')]);
     }
 
     /**
@@ -33,7 +33,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        return response()->json(['reports' => $report->load('user','reward','location','teamReport')], 200);
+        return response()->json(['reports' => $report->load('user','reward','location','teamReports')], 200);
     }
 
     /**
@@ -42,7 +42,7 @@ class ReportController extends Controller
     public function update(UpdateReportRequest $request, Report $report)
     {
         $report->update($request->validated());
-        return response()->json(['report' => $report->load('user','reward','location','teamReport')]);
+        return response()->json(['report' => $report->load('user','reward','location','teamReports')]);
     }
 
     /**

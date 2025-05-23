@@ -23,7 +23,7 @@ class TeamFactory extends Factory
         "areas_examined"=>$this->faker->randomNumber,
         "unit_id"=>Unit::inRandomOrder()->first()->id,
         "teamposition_id"=>Teamposition::inRandomOrder()->first()->id,
-        "status"=>"free",
+        "status"=>"available",
         "level"=>$this->faker->randomNumber,
         ];
     }

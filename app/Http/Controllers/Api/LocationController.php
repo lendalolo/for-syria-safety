@@ -16,7 +16,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $location = Location::with('reports','compaigns')->get();
+        $location = Location::with('reports.teamReports.team','compaigns')->get();
         return response()->json(['locations' => $location]);
     }
 

@@ -29,7 +29,7 @@ class Report extends Model
         return $this->belongsTo(Location::class);
     }
 
-    public function teamReport()
+    public function teamReports(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(TeamReport::class);
 

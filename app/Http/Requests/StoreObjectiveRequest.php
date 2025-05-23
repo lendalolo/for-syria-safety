@@ -22,7 +22,8 @@ class StoreObjectiveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>["required","string","max:255"]
+            "name"=>["required","string","max:255"],
+            "learn_id"=>["required","integer","exists:learns,id"],
         ];
     }
 }

@@ -23,7 +23,7 @@ class UpdateTeamRequest extends FormRequest
     {
         return [
                         "name"=> ['sometimes','string','max:255'],
-                        "status"=> 'sometimes|string|in:busy,free',
+                        "status"=> 'sometimes|string|in:available,busy,waiting',
                         "compaigns_num"=>["sometimes"],
                          "areas_examined"=>["sometimes"],
                          "unit_id"=>["sometimes","exists:units,id"],

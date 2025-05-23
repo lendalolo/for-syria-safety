@@ -27,7 +27,7 @@ class ObjectiveController extends Controller
     public function store(StoreObjectiveRequest $request)
     {
         $objective = Objective::create($request->validated());
-        return response()->json(['objective' => $objective]);
+        return response()->json(['objective' => $objective->load('learn')]);
     }
 
     /**
@@ -44,7 +44,7 @@ class ObjectiveController extends Controller
     public function update(UpdateObjectiveRequest $request, Objective $objective)
     {
         $objective->update($request->all());
-        return response()->json(['objective' => $objective]);
+        return response()->json(['objective' => $objective->load('learn')]);
     }
 
     /**

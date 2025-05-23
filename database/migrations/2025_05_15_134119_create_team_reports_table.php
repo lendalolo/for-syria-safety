@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('team_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
-
-            $table->foreignId('report_id')->constrained('reports')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('report_id')->unique()->constrained('reports')->cascadeOnDelete()->cascadeOnUpdate();
             $table->dateTime('date');
             $table->enum('status', ['completed','uncompleted','working on'])->default('uncompleted');
             $table->timestamps();
+            uniqid('date','team_id');
+
         });
     }
 
