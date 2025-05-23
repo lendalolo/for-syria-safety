@@ -15,7 +15,7 @@ class CompaignController extends Controller
      */
     public function index()
     {
-        $compaigns = Compaign::with(['team','location','media','toolCompaigns','organizationCompaign','step'])->get();
+        $compaigns = Compaign::with(['team.users','location','media','toolCompaigns','organizationCompaign','step'])->get();
         return response()->json(['compaigns' => $compaigns], 200);
     }
 
@@ -28,7 +28,7 @@ class CompaignController extends Controller
         if ($request->media) {
         $compaign->addMediaFromRequest('media')->toMediaCollection('compaigns');
         }
-        return response()->json(['compaign' => $compaign->load('team','location','media')]);
+        return response()->json(['compaign' => $compaign->load('team.users ','location','media')]);
     }
 
     /**

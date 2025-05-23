@@ -10,7 +10,7 @@ class Objective extends Model
     use HasFactory;
     protected $guarded =['id'];
 
-    public function learns()
+    public function learn()
     {
         return $this->belongsTo(Learn::class);
     }

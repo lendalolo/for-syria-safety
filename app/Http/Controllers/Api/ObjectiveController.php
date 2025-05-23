@@ -17,7 +17,7 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
-        $objectives = Objective::with('learns')->get();
+        $objectives = Objective::with('learn')->get();
         return response()->json(['objectives' => $objectives], 200);
     }
 
@@ -35,7 +35,7 @@ class ObjectiveController extends Controller
      */
     public function show(Objective $objective)
     {
-        return response()->json(['objective' => $objective->load('learns')], 200);
+        return response()->json(['objective' => $objective->load('learn')], 200);
     }
 
     /**
