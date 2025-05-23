@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->float('lat');
             $table->float('lon');
-            $table->enum('status', ['safe', 'danger', 'warning'])->default('danger');
+            $table->enum('status', ['danger', 'warning'])->default('danger');
             $table->timestamps();
         });
     }

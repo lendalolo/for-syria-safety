@@ -43,13 +43,13 @@ class LocationSeeder extends Seeder
                "name"=>"شارع جبل الجودي",
                "lat"=>36.227087499737344,
                "lon"=> 37.12350302716437,
-               "status"=>"safe",
+               "status"=>"warning",
                ],
                [
                "name"=>"شارع الخالديه",
                "lat"=>36.22763838562229,
                "lon"=> 37.11840933844172,
-               "status"=>"safe",
+               "status"=>"danger",
                ],[
                "name"=>"شارع بابل",
                "lat"=>36.22953771951283,
