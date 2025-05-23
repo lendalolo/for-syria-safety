@@ -53,4 +53,5 @@ class ReportController extends Controller
         $report->delete();
         return response()->json(['status' => 'success']);
     }
+
 }

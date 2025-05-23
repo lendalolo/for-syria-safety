@@ -24,7 +24,7 @@ class Team extends Model
     {
     return $this->hasMany(TeamReport::class);
     }
-    public function teamPosition()
+    public function Teamposition(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
     return $this->belongsTo(TeamPosition::class);
     }
@@ -32,7 +32,7 @@ class Team extends Model
     {
         return $this->hasMany(User::class);
     }
-    public function comppaigns()
+    public function Compaign()
     {
         return $this->hasMany(Compaign::class);
     }

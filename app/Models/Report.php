@@ -14,6 +14,12 @@ class Report extends Model
     /** @use HasFactory<\Database\Factories\ReportFactory> */
     use HasFactory;
     protected $guarded =['id'];
+    protected $fillable = [
+        'description',
+        'statue',
+        'user_id',
+        'location_id',
+    ];
 
     public function reward()
     {
