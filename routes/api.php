@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\CompaignController;
+use App\Http\Controllers\Api\ObjectiveController;
 use App\Http\Controllers\Api\ToolCompaignController;
-use App\Http\Controllers\Api\ToolController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamReportController;
 use App\Http\Controllers\Api\ReportController;
@@ -15,7 +15,6 @@ use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\TeampositionController;
 use App\Http\Controllers\Api\StepController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ObjectivesController;
 use App\Http\Controllers\Api\DonationController;
 use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UserController;
@@ -53,8 +52,8 @@ Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(
     Route::apiResource('/steps',StepController::class);
     Route::apiResource('/organizations',OrganizationController::class);
     Route::apiResource('/donations',DonationController::class);
-    Route::apiResource('/tools',ToolController::class);
-    Route::apiResource('/objectives',ObjectivesController::class);
+    Route::apiResource('/tools',ToolCompaignController::class);
+    Route::apiResource('/objectives',ObjectiveController::class);
     Route::apiResource('/tool_compaign',ToolCompaignController::class);
     Route::apiResource('/organization_compaigns',OrganizationCompaignController::class);
     Route::apiResource('/users',UserController::class);
@@ -87,12 +86,12 @@ Route::apiResource('/reports',ReportController::class)->only(['index','show']);
 Route::apiResource('/learns',LearnController::class)->only(['index','show']);
 Route::apiResource('/rewards',RewardController::class)->only(['index','show']);
 Route::apiResource('/organizations',OrganizationController::class)->only(['index','show']);
-Route::apiResource('/tools',ToolController::class)->only(['index','show']);
+Route::apiResource('/tools',ToolCompaignController::class)->only(['index','show']);
 Route::apiResource('/locations',LocationController::class)->only(['index','show']);
 Route::apiResource('/teampositions',TeampositionController::class)->only(['index','show']);
 Route::apiResource('/steps',StepController::class)->only(['index','show']);
 Route::apiResource('/donations',DonationController::class)->only(['index','show']);
-Route::apiResource('/objectives',ObjectivesController::class)->only(['index','show']);
+Route::apiResource('/objectives',ObjectiveController::class)->only(['index','show']);
 Route::apiResource('/tool_compaign',ToolCompaignController::class)->only(['index','show']);
 Route::apiResource('/organization_compaigns',OrganizationCompaignController::class)->only(['index','show']);
 // Route::group(['prefix'=>'admin'],(function(){

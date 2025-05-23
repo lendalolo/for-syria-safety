@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreObjectiveRequest;
 use App\Http\Requests\UpdateObjectiveRequest;
+use App\Models\Objective;
 use App\Models\Team;
 use App\Models\Teamposition;
 use Illuminate\Support\Facades\Auth;

@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateToolCompaignRequest;
 use App\Models\ToolCompaign;
 use Illuminate\Support\Facades\Auth;
 
-class ToolController extends Controller
+class ToolCompaignController extends Controller
 {
     /**
      * Display a listing of the resource.

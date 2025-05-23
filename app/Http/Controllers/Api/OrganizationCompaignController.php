@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\OrganizationCompaign;
 use App\Http\Requests\StoreOrganizationCompaignRequest;
 use App\Http\Requests\UpdateOrganizationCompaignRequest;
-class OrganizationComapignController extends Controller
+class OrganizationCompaignController extends Controller
 {
     /**
      * Display a listing of the resource.
