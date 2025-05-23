@@ -29,7 +29,7 @@ class DonationController extends Controller
     public function store(StoreDonationRequest $request)
     {
         $donation = Donation::create($request->validated());
-        return response()->json(['donation' => $donation
+        return response()->json(['donation' => $donation->load('user','tool')
         ,'message' =>  __('Operation completed successfully'),
                 //'Donation '
         ], 201);
@@ -49,7 +49,7 @@ class DonationController extends Controller
     public function update(UpdateDonationRequest $request, Donation $donation)
     {
         $donation->update($request->all());
-        return response()->json(['donation' => $donation]);
+        return response()->json(['donation' => $donation->load('user','tool')]);
     }
 
     /**

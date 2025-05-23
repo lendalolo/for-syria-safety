@@ -75,12 +75,13 @@ Route::middleware(["auth:sanctum"])->group(function(){
 
     Route::apiResource('/reports',ReportController::class);
     Route::apiResource('/user',UserController::class);
-
+    Route::apiResource('/donations',DonationController::class);
     Route::Put('/RegerterInTeam',[UserController::class,'RegerterInTeam']);
 
 });
 
 Route::apiResource('/compaigns',CompaignController::class)->only(['index','show']);
+Route::apiResource('/donations',DonationController::class)->only(['index','show']);
 Route::apiResource('/teams',TeamController::class)->only(['index','show']);
 Route::apiResource('/reports',ReportController::class)->only(['index','show']);
 Route::apiResource('/learns',LearnController::class)->only(['index','show']);
