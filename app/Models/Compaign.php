@@ -25,7 +25,7 @@ class Compaign extends Model implements HasMedia
  }
  public function registerMediaCollections():void
  {
- $this->addMediaCollection('compaigns');
+        $this->addMediaCollection('compaigns');
  }
  public function team()
  {

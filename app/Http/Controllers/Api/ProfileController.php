@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Report;
 use App\Models\User;
 use App\Http\Requests\UpdateProfileRequest;
 class ProfileController extends Controller
@@ -30,11 +31,24 @@ class ProfileController extends Controller
      */
     public function show()
     {
-
-        $user = User::with('media','team','reports','donations')->where('id', auth()->id())->first();
+        $points = 0;
+        $reports = Report::with('reward')->where('user_id',auth()->id())->get();
+        $total_reports = Report::with('reward')->where('user_id',auth()->id())->get()->count();
+        $user = User::with('media','team','donations')->where('id', auth()->id())->first();
+        foreach($reports as $report){
+                if($report->reward)
+                $points = $points + $report->reward->point;
+                if($report->statue === "verified")
+                $verified_reports++;
+        }
             return response()->json([
-            'profile' => $user
+            'profile' => $user,
+            'reports'=>$reports,
+            'points'=>$points,
+            'total_reports'=>$total_reports,
+            'verified_reports'=>$verified_reports
             ]);
+
     }
 
     /**
@@ -42,19 +56,20 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileRequest $request)
     {
-    $user = User::where('id', auth()->id())->update([
-        "name"=>$request->name,
-        "email"=>$request->email,
-    ]);
-
-      if ($request->media) {
-            $user->addMediaFromRequest('media')->toMediaCollection('users');
-        }
-
-        return response()->json([
-        'profile' => $user,
-        'message' => 'successfully update!'
+        $user = User::findOrFail(auth()->id());
+        $user->update([
+             "name"=>$request->name,
+             "email"=>$request->email,
         ]);
+
+            if ($request->media) {
+                    $user->clearMediaCollection('users');
+                    $user->addMediaFromRequest('media')->toMediaCollection('users');
+             }
+                return response()->json([
+                'profile' => $user->load('media'),
+                'message' => 'successfully update!'
+                ]);
 
     }
 

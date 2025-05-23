@@ -39,10 +39,12 @@ return response()->json(['message'=>'hello user']);
 
 //admin
 Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(){
-    Route::apiResource('/compaigns',CompaignController::class);
+    Route::apiResource('/compaigns',CompaignController::class)->only('show','store','destroy','index');
+    Route::post('/compaigns/{compaign}',[CompaignController::class,'update']);
     Route::apiResource('/teams',TeamController::class);
     Route::apiResource('/reports',ReportController::class);
-    Route::apiResource('/learns',LearnController::class);
+    Route::post('/learns/{learn}',[LearnController::class,'update']);
+    Route::apiResource('/learns',LearnController::class)->only('show','store','destroy','index');
     Route::apiResource('/units',UnitController::class);
     Route::apiResource('/rewards',RewardController::class);
     Route::apiResource('/locations',LocationController::class);
@@ -68,7 +70,7 @@ Route::middleware(["auth:sanctum"])->group(function(){
 
     //profile
     Route::get('/profile',[ProfileController::class,'show']);
-    Route::patch('/profile',[ProfileController::class,'update']);
+    Route::post('/profile',[ProfileController::class,'update']);
     Route::delete('/profile',[ProfileController::class,'destroy']);
 
 

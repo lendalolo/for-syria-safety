@@ -15,8 +15,8 @@ class CompaignController extends Controller
      */
     public function index()
     {
-        $campaign = Compaign::with(['team','location','media'])->get();
-        return response()->json(['campaign' => $campaign], 200);
+        $compaigns = Compaign::with(['team','location','media'])->get();
+        return response()->json(['compaigns' => $compaigns], 200);
     }
 
     /**
@@ -24,11 +24,11 @@ class CompaignController extends Controller
      */
     public function store(StoreCompaignRequest $request)
     {
-        $campaign = Compaign::create($request->validated());
+        $compaign = Compaign::create($request->validated());
         if ($request->media) {
-        $campaign->addMediaFromRequest('media')->toMediaCollection('campaigns');
+        $compaign->addMediaFromRequest('media')->toMediaCollection('compaigns');
         }
-        return response()->json(['campaign' => $campaign->load('team','location','media')]);
+        return response()->json(['compaign' => $compaign->load('team','location','media')]);
     }
 
     /**
@@ -36,7 +36,7 @@ class CompaignController extends Controller
      */
     public function show(Compaign $compaign)
     {
-        return response()->json(['campaign' => $compaign->load('team','location','media')], 200);
+        return response()->json(['compaign' => $compaign->load('team','location','media')], 200);
     }
 
     /**
@@ -46,9 +46,10 @@ class CompaignController extends Controller
     {
         $compaign->update($request->validated());
         if ($request->media) {
-                $campaign->addMediaFromRequest('media')->toMediaCollection('campaigns');
+                $compaign->clearMediaCollection('compaigns');
+                $compaign->addMediaFromRequest('media')->toMediaCollection('compaigns');
         }
-        return response()->json(['campaign' => $compaign->load('team','location','media')]);
+        return response()->json(['compaign' => $compaign->load('team','location','media')]);
     }
 
     /**

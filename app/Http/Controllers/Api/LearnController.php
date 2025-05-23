@@ -46,7 +46,8 @@ class LearnController extends Controller
     {
         $learn->update($request->validated());
         if ($request->media) {
-        $learn->addMediaFromRequest('media')->toMediaCollection('learns');
+               $learn->clearMediaCollection('learns');
+               $learn->addMediaFromRequest('media')->toMediaCollection('learns');
         }
         return response()->json(['learn' => $learn->load('objective','media')]);
     }
