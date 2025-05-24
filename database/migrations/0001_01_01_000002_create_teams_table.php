@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->json('name')->nullable();
             $table->string('compaigns_num');
             $table->string('areas_examined');
             $table->foreignId('unit_id')->constrained('units')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('teamposition_id')->constrained('teampositions')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('status', ['available','busy','waiting'])->default('available');
-            $table->string('level');
+            $table->json('level');
             $table->timestamps();
         });
     }

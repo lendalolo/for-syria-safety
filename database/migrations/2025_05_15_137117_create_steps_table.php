@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('steps', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name');
             $table->foreignId('compaign_id')->constrained('compaigns')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('description');
+            $table->json('description');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('teampositions', function (Blueprint $table) {
             $table->id();
             $table->json('name');
-            $table->String('description')->nullable();
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

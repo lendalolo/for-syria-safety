@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('learns', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type')->nullable();
-            $table->string('description')->nullable();
+            $table->json('name');
+            $table->json('type')->nullable();
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

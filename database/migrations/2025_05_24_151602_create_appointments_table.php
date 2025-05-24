@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->time('time');
-            $table->string('mission');
+            $table->json('mission');
             $table->enum('statue',['assigned','optional'])->default('assigned');
             $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('compaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->json('name');
+            $table->json('description')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('article')->nullable();
+            $table->json('article')->nullable();
             $table->string('video')->nullable();
             $table->foreignId('location_id')->constrained('locations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
