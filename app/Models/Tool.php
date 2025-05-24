@@ -13,10 +13,10 @@ class Tool extends Model
 use HasFactory;
     protected $guarded =['id'];
 
-//    public function compaigns()
-//    {
-//        return $this->hasMany(Compaign::class);
-//    }
+   public function compaigns()
+   {
+       return $this->belongsToMany(Compaign::class);
+   }
     public function toolCompaigns()
     {
     return $this->hasMany(ToolCompaign::class);
@@ -24,7 +24,5 @@ use HasFactory;
     public function donations(){
         return $this->hasMany(Donation::class);
     }
-    // public function users(){
-    // return $this->belongsToMany(User::class);
-    // }
+
 }

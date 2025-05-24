@@ -14,7 +14,7 @@ class ToolCompaign extends Model
     {
         return $this->belongsTo(Compaign::class);
     }
-    public function tool()
+    public function tools()
     {
     return $this->belongsTo(Tool::class);
     }

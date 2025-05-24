@@ -18,9 +18,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             LocationSeeder::class,
             UnitSeeder::class,
-
             ToolSeeder::class,
-
             LearnSeeder::class,
             ObjectiveSeeder::class,
             OrganizationSeeder::class,
@@ -30,6 +28,7 @@ class DatabaseSeeder extends Seeder
             StepSeeder::class,
             ReportSeeder::class,
             RewardSeeder::class,
+            AppointmentSeeder::class,
         ]);
         // User::factory()->create([
         //     'name' => 'Test User',

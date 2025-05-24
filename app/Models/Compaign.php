@@ -31,9 +31,9 @@ class Compaign extends Model implements HasMedia
  {
  return $this->belongsTo(Team::class);
  }
-// public function tools(){
-// return $this->belongsToMany(Tool::class);
-// }
+public function tools(){
+return $this->belongsToMany(Tool::class);
+}
  public function toolCompaigns(){
  return $this->hasMany(ToolCompaign::class);
  }

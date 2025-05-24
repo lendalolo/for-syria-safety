@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Report;
 use App\Models\Teamposition;
 use App\Models\TeamReport;
+use App\Models\Appointment;
 use App\Models\Unit;
 
 class Team extends Model
@@ -19,7 +20,10 @@ class Team extends Model
     }
 
     protected $guarded =['id'];
-
+    public function appointments()
+    {
+    return $this->hasMany( Appointment::class);
+    }
     public function teamReport()
     {
     return $this->hasMany(TeamReport::class);

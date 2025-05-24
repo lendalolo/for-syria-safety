@@ -16,7 +16,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tool = Tool::with('toolCompaigns','comppaigns','donations','users')->get();
+        $tool = Tool::with('donations')->get();
         return response()->json(['tool' => $tool], 200);
     }
 
@@ -34,7 +34,7 @@ class ToolController extends Controller
      */
     public function show(Tool $tool)
     {
-        return response()->json(['tool' => $tool->load('toolCompaigns','comppaigns','donations','users')], 200);
+        return response()->json(['tool' => $tool->load('donations')], 200);
     }
 
     /**
@@ -43,7 +43,7 @@ class ToolController extends Controller
     public function update(UpdateToolRequest $request, Tool $tool)
     {
         $tool->update($request->all());
-        return response()->json(['tool' => $tool]);
+        return response()->json(['tool' => $tool->load('donations')],200);
     }
 
     /**
