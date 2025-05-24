@@ -7,6 +7,8 @@ use App\Models\Teamposition;
 use App\Http\Requests\StoreTeampositionRequest;
 use App\Http\Requests\UpdateTeampositionRequest;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 class TeampositionController extends Controller
 {
@@ -15,10 +17,17 @@ class TeampositionController extends Controller
      */
     public function index()
     {
-        $teamPosition = Teamposition::with(['teams'])->get();
-        return response()->json(['teamPosition' => $teamPosition], 200);
-    }
+        $locale = App::getLocale();
 
+        $teamPositions = Teamposition::with('teams')->get()
+            ->map(function ($item) use ($locale) {
+                $nameJson = json_decode($item->getAttributes()['name'], true);
+                $item->name = $nameJson[$locale] ?? null;
+                return $item;
+            });
+
+        return response()->json(['teamPositions' => $teamPositions], 200);
+    }
     /**
      * Store a newly created resource in storage.
      */

@@ -18,7 +18,7 @@ class TeamController extends Controller
     public function index()
     {
         $team = Team::with('teamPosition','Compaign','users','teamReport')->get();
-        return response()->json(['teams' => $team], 200);
+        return response()->json(['teams' => $team,'status'=>__("Operation completed successfully")], 200);
     }
 
     /**

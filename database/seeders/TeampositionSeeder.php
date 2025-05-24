@@ -15,13 +15,14 @@ class TeampositionSeeder extends Seeder
     {
      //  Teamposition::factory(10)->create();
         $categories = [
-            'resque',
-            'explorer',
-            'learn',
-
+            ['ar' => 'تعليمي', 'en' => 'learn'],
+            ['ar' => 'انقاذ', 'en' => 'resque'],
+            ['ar' => 'استكشاف', 'en' => 'explorer']
         ];
+
+
         foreach ($categories as $category) {
-            Teamposition::create(['name' => $category,'description' => 'Description '.$category]);
+            Teamposition::create(['name' => $category,'description' => 'Description ']);
         }
     }
 }
