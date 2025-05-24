@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->float('lat');
-            $table->float('lon');
-            $table->enum('status', ['danger', 'warning'])->default('danger');
+            $table->time('time');
+            $table->string('mission');
+            $table->enum('statue',['assigned','optional'])->default('assigned');
+            $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('appointments');
     }
 };

@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\CompaignController;
 use App\Http\Controllers\Api\ObjectiveController;
 use App\Http\Controllers\Api\ToolCompaignController;
+use App\Http\Controllers\Api\AppointmentController;
+use App\Http\Controllers\Api\ToolController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamReportController;
 use App\Http\Controllers\Api\ReportController;
@@ -37,7 +39,7 @@ return response()->json(['message'=>'hello user']);
 });
 
 //admin
-Route::middleware(["auth:sanctum",'is_admin',"lang"])->prefix('admin')->group(function(){
+Route::middleware(["auth:sanctum",'is_admin'])->prefix('admin')->group(function(){
     Route::apiResource('/compaigns',CompaignController::class)->only('show','store','destroy','index');
     Route::post('/compaigns/{compaign}',[CompaignController::class,'update']);
     Route::apiResource('/teams',TeamController::class);
@@ -48,13 +50,14 @@ Route::middleware(["auth:sanctum",'is_admin',"lang"])->prefix('admin')->group(fu
     Route::apiResource('/rewards',RewardController::class);
     Route::apiResource('/locations',LocationController::class);
     Route::apiResource('/teampositions',TeampositionController::class);
+    Route::apiResource('/appointments',AppointmentController::class);
     Route::apiResource('/team_reports',TeamReportController::class);
     Route::apiResource('/steps',StepController::class);
     Route::apiResource('/organizations',OrganizationController::class);
     Route::apiResource('/donations',DonationController::class);
-    Route::apiResource('/tools',ToolCompaignController::class);
+    Route::apiResource('/tools',ToolController::class);
     Route::apiResource('/objectives',ObjectiveController::class);
-    Route::apiResource('/tool_compaign',ToolCompaignController::class);
+    Route::apiResource('/tool_compaigns',ToolCompaignController::class);
     Route::apiResource('/organization_compaigns',OrganizationCompaignController::class);
     Route::apiResource('/users',UserController::class);
 
@@ -65,7 +68,7 @@ Route::middleware(["auth:sanctum",'is_admin',"lang"])->prefix('admin')->group(fu
 
 //member
 
-Route::middleware(["auth:sanctum","lang"])->prefix(app()->getLocale())->group(function(){
+Route::middleware(["auth:sanctum"])->group(function(){
 
     //profile
     Route::get('/profile',[ProfileController::class,'show']);
@@ -79,24 +82,24 @@ Route::middleware(["auth:sanctum","lang"])->prefix(app()->getLocale())->group(fu
     Route::Put('/RegerterInTeam',[UserController::class,'RegerterInTeam']);
 
 });
-Route::middleware(["lang"])->group(function(){
-    Route::apiResource('/compaigns',CompaignController::class)->only(['index','show']);
-    Route::apiResource('/donations',DonationController::class)->only(['index','show']);
-    Route::apiResource('/teams',TeamController::class)->only(['index','show']);
-    Route::apiResource('/reports',ReportController::class)->only(['index','show']);
-    Route::apiResource('/learns',LearnController::class)->only(['index','show']);
-    Route::apiResource('/rewards',RewardController::class)->only(['index','show']);
-    Route::apiResource('/organizations',OrganizationController::class)->only(['index','show']);
-    Route::apiResource('/tools',ToolCompaignController::class)->only(['index','show']);
-    Route::apiResource('/locations',LocationController::class)->only(['index','show']);
-    Route::apiResource('/teampositions',TeampositionController::class)->only(['index','show']);
-    Route::apiResource('/steps',StepController::class)->only(['index','show']);
-    Route::apiResource('/donations',DonationController::class)->only(['index','show']);
-    Route::apiResource('/objectives',ObjectiveController::class)->only(['index','show']);
-    Route::apiResource('/tool_compaign',ToolCompaignController::class)->only(['index','show']);
-    Route::apiResource('/organization_compaigns',OrganizationCompaignController::class)->only(['index','show']);
 
-});
+Route::apiResource('/compaigns',CompaignController::class)->only(['index','show']);
+Route::apiResource('/donations',DonationController::class)->only(['index','show']);
+Route::apiResource('/teams',TeamController::class)->only(['index','show']);
+Route::apiResource('/reports',ReportController::class)->only(['index','show']);
+Route::apiResource('/learns',LearnController::class)->only(['index','show']);
+Route::apiResource('/rewards',RewardController::class)->only(['index','show']);
+Route::apiResource('/organizations',OrganizationController::class)->only(['index','show']);
+Route::apiResource('/tools',ToolCompaignController::class)->only(['index','show']);
+Route::apiResource('/locations',LocationController::class)->only(['index','show']);
+Route::apiResource('/teampositions',TeampositionController::class)->only(['index','show']);
+Route::apiResource('/steps',StepController::class)->only(['index','show']);
+Route::apiResource('/appointments',AppointmentController::class)->only(['index','show']);
+
+Route::apiResource('/donations',DonationController::class)->only(['index','show']);
+Route::apiResource('/objectives',ObjectiveController::class)->only(['index','show']);
+Route::apiResource('/tool_compaign',ToolCompaignController::class)->only(['index','show']);
+Route::apiResource('/organization_compaigns',OrganizationCompaignController::class)->only(['index','show']);
 // Route::group(['prefix'=>'admin'],(function(){
 
 // }));

@@ -16,8 +16,8 @@ class ToolCompaignController extends Controller
      */
     public function index()
     {
-        $toolcomapigns = ToolCompaign::with('tool','compaign')->get();
-        return response()->json(['toolcomapigns' => $toolcomapigns], 200);
+        $tool_compaigns = ToolCompaign::with('tools','compaigns')->get();
+        return response()->json(['tool_compaigns' => $tool_compaigns], 200);
     }
 
     /**
@@ -25,33 +25,33 @@ class ToolCompaignController extends Controller
      */
     public function store(StoreToolCompaignRequest $request)
     {
-        $toolcomapign = ToolCompaign::create($request->validated());
-        return response()->json(['tool' => $toolcomapign]);
+        $tool_compaign = ToolCompaign::create($request->validated());
+        return response()->json(['tool_compaign' => $tool_compaign]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ToolCompaign $toolcomapign)
+    public function show(ToolCompaign $tool_compaign)
     {
-        return response()->json(['tool' => $toolcomapign->load('tool','compaign')], 200);
+        return response()->json(['tool_compaign' => $tool_compaign->load('tools','compaigns')], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateToolCompaignRequest $request, ToolCompaign $toolcomapign)
+    public function update(UpdateToolCompaignRequest $request, ToolCompaign $tool_compaign)
     {
-        $toolcomapign->update($request->all());
-        return response()->json(['tool' => $toolcomapign]);
+        $tool_compaign->update($request->all());
+        return response()->json(['tool_compaign' => $tool_compaign]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ToolCompaign $toolcomapign)
+    public function destroy(ToolCompaign $tool_compaign)
     {
-        $toolcomapign->delete();
+        $tool_compaign->delete();
         return response()->json(['status' => 'success']);
     }
 
