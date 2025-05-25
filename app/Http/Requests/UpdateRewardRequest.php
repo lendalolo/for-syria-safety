@@ -22,7 +22,7 @@ class UpdateRewardRequest extends FormRequest
     public function rules(): array
     {
         return [
-             "description"=>['nullable','string'],
+             "description"=>['nullable','json'],
              "point"=>['sometimes','string','max:255'],
              "report_id"=>['sometimes','exists:reports,id']
         ];

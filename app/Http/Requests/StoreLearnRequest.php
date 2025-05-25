@@ -22,9 +22,9 @@ class StoreLearnRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>['required','string','max:255'],
-            "type"=>['nullable','string','max:255'],
-            "description"=>['nullable','string'],
+            "name"=>['required','json','max:255'],
+            "type"=>['nullable','json','max:255'],
+            "description"=>['nullable','json'],
             "objective_id"=>['required','exists:objectives,id'],
         ];
     }

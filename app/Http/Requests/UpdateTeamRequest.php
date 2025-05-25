@@ -22,13 +22,13 @@ class UpdateTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-                        "name"=> ['sometimes','string','max:255'],
+                        "name"=> ['sometimes','json','max:255'],
                         "status"=> 'sometimes|string|in:available,busy,waiting',
                         "compaigns_num"=>["sometimes"],
                          "areas_examined"=>["sometimes"],
                          "unit_id"=>["sometimes","exists:units,id"],
                         "teamposition_id"=>["sometimes","exists:teampositions,id"],
-                        "level"=>["sometimes"],
+                        "level"=>["sometimes","json"],
 
 
         ];

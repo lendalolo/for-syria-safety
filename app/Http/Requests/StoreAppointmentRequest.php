@@ -24,7 +24,7 @@ class StoreAppointmentRequest extends FormRequest
         return [
            "team_id"=>['required','exists:teams,id'],
            "time"=>['required'],
-           "mission"=>['required','string'],
+           "mission"=>['required','json'],
            "statue"=>['required'],
         ];
     }

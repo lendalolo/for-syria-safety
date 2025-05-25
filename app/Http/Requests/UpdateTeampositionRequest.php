@@ -22,8 +22,8 @@ class UpdateTeampositionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>['sometimes','string','max:255'],
-            "description"=>['nullable','string'],
+            "name"=>['sometimes','json','max:255'],
+            "description"=>['nullable','json'],
         ];
     }
 }

@@ -24,7 +24,7 @@ class UpdateAppointmentRequest extends FormRequest
         return [
            "team_id"=>['sometimes','exists:teams,id'],
            "time"=>['sometimes'],
-           "mission"=>['sometimes','string'],
+           "mission"=>['sometimes','json'],
            "statue"=>['sometimes'],
         ];
     }

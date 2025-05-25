@@ -22,7 +22,7 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|string|max:255|min:3|unique:users|regex:/^[\pL\s\-]+$/u',
+            'name' => 'sometimes|json|max:255|min:3|unique:users|regex:/^[\pL\s\-]+$/u',
             'email' => 'sometimes|string|email|max:255|unique:users',
             'role' => 'sometimes|string|in:admin,user,member',
             'email_verified_at' => 'nullable|date',

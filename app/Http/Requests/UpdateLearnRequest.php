@@ -22,9 +22,9 @@ class UpdateLearnRequest extends FormRequest
     public function rules(): array
     {
         return [
-                "name"=>['sometimes','string','max:255'],
-                "type"=>['nullable','string','max:255'],
-                "description"=>['nullable','string'],
+                "name"=>['sometimes','json','max:255'],
+                "type"=>['nullable','json','max:255'],
+                "description"=>['nullable','json'],
                 "objective_id"=>['sometimes','exists:objectives,id'],
         ];
     }

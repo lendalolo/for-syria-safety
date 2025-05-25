@@ -22,7 +22,7 @@ class StoreRewardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "description"=>['nullable','string'],
+            "description"=>['nullable','json'],
             "point"=>['required','string','max:255'],
             "report_id"=>['required','exists:reports,id']
         ];

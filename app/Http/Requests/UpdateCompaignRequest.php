@@ -22,8 +22,8 @@ class UpdateCompaignRequest extends FormRequest
     public function rules(): array
     {
         return [
-                "name"=>['sometimes','string','max:255'],
-                "description"=>['sometimes','string'],
+                "name"=>['sometimes','json','max:255'],
+                "description"=>['sometimes','json'],
                 "start_date"=>['sometimes','date'],
                 "end_date"=>['sometimes','date'],
                 "location_id"=>['sometimes','exists:locations,id'],

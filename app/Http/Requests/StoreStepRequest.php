@@ -23,8 +23,8 @@ class StoreStepRequest extends FormRequest
     {
         return [
         //
-        "name"=>["required",'max:255',"string"],
-        "description"=>["required",'max:255',"string"]
+        "name"=>["required",'max:255',"json"],
+        "description"=>["required",'max:255',"json"]
         ];
     }
 }

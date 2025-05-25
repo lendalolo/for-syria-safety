@@ -22,7 +22,7 @@ class StoreTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=> ['required','string','max:255'],
+            "name"=> ['required','json','max:255'],
             "status"=> 'required|string|in:available,busy,waiting',
             "compaigns_num"=>["required"],
             "areas_examined"=>["required"],

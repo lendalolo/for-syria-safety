@@ -22,7 +22,7 @@ class UpdateLocationRequest extends FormRequest
     public function rules(): array
     {
        return [
-                "name"=>['sometimes','string','max:255'],
+                "name"=>['sometimes','json','max:255'],
                  "lat"=>['sometimes','string','max:255'],
                   "lon"=>['sometimes','string','max:255'],
                  "status"=> 'sometimes|string|in:safe,danger,warning',

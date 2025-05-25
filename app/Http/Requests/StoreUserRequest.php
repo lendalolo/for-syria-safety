@@ -22,7 +22,7 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|min:3|unique:users|regex:/^[\pL\s\-]+$/u',
+            'name' => 'required|json|max:255|min:3|unique:users|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|string|email|max:255|unique:users',
             'role' => 'required|string|in:admin,user,member',
             'email_verified_at' => 'nullable|date',

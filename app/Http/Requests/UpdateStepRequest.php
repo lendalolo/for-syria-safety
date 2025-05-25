@@ -22,8 +22,8 @@ class UpdateStepRequest extends FormRequest
     public function rules(): array
     {
         return [
-                    "name"=>["sometimes",'max:255',"string"],
-                    "description"=>["sometimes",'max:255',"string"]
+                    "name"=>["sometimes",'max:255',"json"],
+                    "description"=>["sometimes",'max:255',"json"]
         ];
     }
 }
