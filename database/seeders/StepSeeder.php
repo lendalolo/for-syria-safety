@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Step;
+use App\Models\Compaign;
 
 class StepSeeder extends Seeder
 {
@@ -13,7 +14,34 @@ class StepSeeder extends Seeder
      */
     public function run(): void
     {
-        Step::factory(10)->create();
+            $steps = [
+            ["name"=> ['ar' => 'تعليمي', 'en' => 'step'],
+            "description"=>['ar' => 'تعليمي', 'en' => 'step'],
+             "compaign_id"=>Compaign::inRandomOrder()->first()->id,
 
-    }
+            ],
+            ["name"=> ['ar' => 'انقاذ', 'en' => 'step'],
+            "description"=>['ar' => 'تعليمي', 'en' => 'step'],
+             "compaign_id"=>Compaign::inRandomOrder()->first()->id,
+
+
+            ],
+            ["name"=> ['ar' => 'استكشاف', 'en' => 'step'],
+            "description"=>['ar' => 'تعليمي', 'en' => 'step'],
+                      "compaign_id"=>Compaign::inRandomOrder()->first()->id,
+
+
+
+            ]
+
+
+
+
+            ];
+
+
+            foreach ($steps as $step) {
+            Step::create($step);
+            }
+          }
 }

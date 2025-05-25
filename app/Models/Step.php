@@ -10,7 +10,10 @@ class Step extends Model
 {
 use HasFactory;
     protected $guarded =['id'];
-
+    protected $casts = [
+        'name' => 'array',
+        'description'=>'array'
+     ];
     public function compaigns()
     {
         return $this->belongsTo(Compaign::class);

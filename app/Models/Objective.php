@@ -9,7 +9,9 @@ class Objective extends Model
 {
     use HasFactory;
     protected $guarded =['id'];
-
+    protected $casts = [
+    'name' => 'array',
+    ];
     public function learn()
     {
         return $this->belongsTo(Learn::class);

@@ -13,6 +13,27 @@ class OrganizationSeeder extends Seeder
      */
     public function run(): void
     {
-         Organization::factory(12)->create();
+    $organizations = [
+    ["name"=> ['ar' => 'اسم', 'en' => 'name'],
+    "description"=>['ar' => 'وصف', 'en' => 'description'],
+    ],
+    ["name"=> ['ar' => 'اسم', 'en' => 'name'],
+    "description"=>['ar' => 'وصف', 'en' => 'description'],
+
+    ],
+    ["name"=> ['ar' => 'اسم', 'en' => 'name'],
+    "description"=>['ar' => 'وصف', 'en' => 'description'],
+
+    ]
+
+
+
+
+    ];
+
+
+    foreach ($organizations as $organization) {
+    Organization::create($organization);
+    }
     }
 }

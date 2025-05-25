@@ -11,7 +11,10 @@ class Teamposition extends Model
     /** @use HasFactory<\Database\Factories\TeampositionFactory> */
     use HasFactory;
     protected $guarded =['id'];
-
+    protected $casts = [
+        'name' => 'array',
+        'description'=>'array'
+    ];
     public function teams(){
         return $this->hasMany(Team::class);
     }

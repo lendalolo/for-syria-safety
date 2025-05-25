@@ -14,6 +14,11 @@ class Team extends Model
 {
     /** @use HasFactory<\Database\Factories\TeamFactory> */
     use HasFactory;
+    protected $casts = [
+    'name' => 'array',
+    'level' => 'array',
+
+    ];
     public function unit()
     {
     return $this->belongsTo(Unit::class);

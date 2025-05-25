@@ -10,7 +10,9 @@ class Appointment extends Model
     /** @use HasFactory<\Database\Factories\AppointmentFactory> */
     use HasFactory;
         protected $guarded =['id'];
-
+            protected $casts = [
+            'mission' => 'array',
+            ];
         public function team()
         {
                  return $this->belongsTo(Team::class);

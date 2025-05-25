@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Objective;
+use App\Models\Learn;
 
 class ObjectiveSeeder extends Seeder
 {
@@ -13,6 +14,24 @@ class ObjectiveSeeder extends Seeder
      */
     public function run(): void
     {
-        Objective::factory(10)->create();
+        // objective::factory(10)->create();
+         $objectives = [
+         ["name"=> ['ar' => 'هدف', 'en' => 'objective'],
+         "learn_id"=>Learn::inRandomOrder()->first()->id,
+         ],
+         ["name"=> ['ar' => 'هدف', 'en' => 'objective'],
+         "learn_id"=>Learn::inRandomOrder()->first()->id,
+         ],
+         ["name"=> ['ar' => 'هدف', 'en' => 'objective'],
+         "learn_id"=>Learn::inRandomOrder()->first()->id,
+
+         ]
+
+         ];
+
+
+         foreach ($objectives as $objective) {
+         Objective::create($objective);
+         }
     }
 }

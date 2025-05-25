@@ -13,6 +13,22 @@ class ToolSeeder extends Seeder
      */
     public function run(): void
     {
-        Tool::factory(10)->create();
+           $tools = [
+           ["name"=> ['ar' => 'أداة', 'en' => 'tool'],
+           ],
+           ["name"=> ['ar' => 'أداة', 'en' => 'tool'],
+           ],
+           ["name"=> ['ar' => 'أداة', 'en' => 'tool'],
+           ]
+
+
+
+
+           ];
+
+
+           foreach ($tools as $tool) {
+           Tool::create($tool);
+           }
     }
 }

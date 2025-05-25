@@ -20,6 +20,9 @@ class Report extends Model
         'user_id',
         'location_id',
     ];
+      protected $casts = [
+      'description' => 'array',
+      ];
 
     public function reward()
     {

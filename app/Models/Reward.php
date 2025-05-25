@@ -10,7 +10,9 @@ class Reward extends Model
     /** @use HasFactory<\Database\Factories\RewardFactory> */
     use HasFactory;
     protected $guarded =['id'];
-
+ protected $casts = [
+ 'description' => 'array',
+ ];
     public function report(){
         return $this->belongsTo(Report::class);
     }

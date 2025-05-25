@@ -12,7 +12,11 @@ class Learn extends Model implements HasMedia
     /** @use HasFactory<\Database\Factories\LearnFactory> */
     use HasFactory,InteractsWithMedia;
     protected $guarded =['id'];
-
+  protected $casts = [
+  'name' => 'array',
+  'description' => 'array',
+  'type' => 'array',
+  ];
 public function objective()
 {
     return $this->hasMany(Objective::class);

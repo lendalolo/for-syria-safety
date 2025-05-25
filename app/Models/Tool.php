@@ -12,7 +12,9 @@ class Tool extends Model
 {
 use HasFactory;
     protected $guarded =['id'];
-
+       protected $casts = [
+       'name' => 'array',
+       ];
    public function compaigns()
    {
        return $this->belongsToMany(Compaign::class);
