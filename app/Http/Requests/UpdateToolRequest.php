@@ -22,7 +22,7 @@ class UpdateToolRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=> ['sometimes','json','max:255'],
+            "name"=> ['sometimes','json','max:255','unique:tools,name'],
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\App;
+use Illuminate\Validation\Rule;
 
 class UpdateCompaignRequest extends FormRequest
 {
@@ -20,9 +22,11 @@ class UpdateCompaignRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    {  $locale = App::getLocale();
         return [
-                "name"=>['sometimes','json','max:255'],
+                "name"=>['sometimes','json','max:255',
+                    Rule::unique('compaigns')->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(name, '$.\"$locale\"')) = ?",
+                        [$this->input("name.$locale")])],
                 "description"=>['sometimes','json'],
                 "start_date"=>['sometimes','date'],
                 "end_date"=>['sometimes','date'],

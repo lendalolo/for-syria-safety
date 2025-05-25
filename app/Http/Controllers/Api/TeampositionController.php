@@ -40,9 +40,17 @@ class TeampositionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Teamposition $teamposition)
+    public function show( $id)
     {
-        return response()->json(['teamposition' => $teamposition->load('teams')], 200);
+
+        $locale = App::getLocale();
+
+        $teamposition = Teamposition::with('teams')->findOrFail($id); // get one record with relation
+
+        $nameJson = json_decode($teamposition->getAttributes()['name'], true);
+        $teamposition->name = $nameJson[$locale] ?? null;
+
+        return response()->json(['teamposition' => $teamposition], 200);
     }
 
     /**

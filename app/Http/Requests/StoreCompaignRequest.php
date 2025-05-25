@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\App;
+use Illuminate\Validation\Rule;
 
 class StoreCompaignRequest extends FormRequest
 {
@@ -20,9 +22,11 @@ class StoreCompaignRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    {$locale = App::getLocale();
         return [
-            "name"=>['required','json','max:255','unique:compaigns,name'],
+            "name"=>['required','json','max:255',
+                Rule::unique('compaigns')->where("JSON_UNQUOTE(JSON_EXTRACT(name, '$.\"$locale\"')) = ?",
+                    [$this->input("name.$locale")])],
             "description"=>['nullable','json'],
             "start_date"=>['required','date'],
             "end_date"=>['required','date'],
