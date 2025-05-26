@@ -23,8 +23,12 @@ class StoreReportRequest extends FormRequest
     {
         return [
             "description"=>['required','json'],
-            "user_id"=>['required','exists:users,id'],
-            "location_id"=>['required','exists:locations,id'],
+            // "user_id"=>['required','exists:users,id'],
+            // "location_id"=>['required','exists:locations,id'],
+            "location_name"=>['required'],
+            "lon"=>['required'],
+            "lat"=>['required'],
+            "location_status"=>['required'],
             "statue"=>['string','in:verified,processing,unverified'],
         ];
     }

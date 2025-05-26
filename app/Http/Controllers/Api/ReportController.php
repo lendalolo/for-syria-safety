@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\Report;
+use App\Models\Location;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use Illuminate\Routing\Controller;
@@ -24,7 +25,33 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        $report = Report::create($request->validated());
+        $locations = Location::all();
+        $locationId =0;
+        if(!$locations->contains('name',$request->location_name) ||
+        !$locations->contains('lon',$request->lon) ||
+         !$locations->contains('lat',$request->lat) ){
+
+             $location = Location::create([
+                'name'=>$request->location_name,
+                'lon'=>$request->lon,
+                'lat'=>$request->lat,
+                'status'=>$request->location_status,
+             ]);
+             $locationId = $location->id;
+         } else{
+            // $location = Location::where('lon',$request->lon)->first();
+            $location = Location::where('lon',$request->lon)->where('lat',$request->lat)->first();
+            // $location = Location::where('name',$request->location_name)->first();
+            // dd($location->id);
+            $locationId = $location->id;
+         }
+
+        $report = Report::create([
+           "description"=> $request->description,
+           "statue"=> $request->statue,
+           "user_id"=> auth()->id(),
+           "location_id"=> $locationId,
+        ]);
         return response()->json(['report' => $report->load('user','reward','location','teamReports')]);
     }
 
