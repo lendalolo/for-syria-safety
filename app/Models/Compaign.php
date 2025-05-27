@@ -19,11 +19,11 @@ class Compaign extends Model implements HasMedia
     /** @use HasFactory<\Database\Factories\CompaignFactory> */
     use HasFactory,InteractsWithMedia;
     protected $guarded = ['id'];
-//   protected $casts = [
-//   'name' => 'array',
-//   'description' => 'array',
-//   'article' => 'array',
-//   ];
+  protected $casts = [
+  'name' => 'array',
+  'description' => 'array',
+  'article' => 'array',
+  ];
  public function location()
  {
  return $this->belongsTo(Location::class);

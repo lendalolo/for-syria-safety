@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\OrganizationCompaignController;
 use App\Http\Controllers\Api\LearnController;
 use App\Http\Controllers\Api\RewardController;
 use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\StaticController;
+
 use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\TeampositionController;
 use App\Http\Controllers\Api\StepController;
@@ -61,6 +63,7 @@ Route::middleware(["auth:sanctum",'is_admin','lang'])->prefix('admin')->group(fu
     Route::apiResource('/tool_compaigns',ToolCompaignController::class);
     Route::apiResource('/organization_compaigns',OrganizationCompaignController::class);
     Route::apiResource('/users',UserController::class);
+    Route::get('/static',[StaticController::class,'static']);
 
 
    // Route::get('/myTeams',[TeamController::class,'myTeam']);

@@ -13,10 +13,10 @@ class Organization extends Model
 {
     use HasFactory;
     protected $guarded =['id'];
-//    protected $casts = [
-//    'name' => 'array',
-//    'description' => 'array',
-//    ];
+   protected $casts = [
+   'name' => 'array',
+   'description' => 'array',
+   ];
     public function compaigns()
     {
         return $this->hasMany(OrganizationCompaign::class);

@@ -18,23 +18,23 @@ class ReportSeeder extends Seeder
     //    Report::factory(10)->create();
       $reports = [
    [
-   "description"=>['ar' => 'وصف', 'en' => 'description'],
-   "statue"=>'processing',
+          "description" => 'description',
+          "statue"=>'processing',
           "user_id"=>User::inRandomOrder()->first()->id,
           "location_id"=>Location::inRandomOrder()->first()->id,
 
    ],
-   [
-   "description"=>['ar' => 'وصف', 'en' => 'description'],
-      "statue"=>'verified',
+    [
+           "description"=>'description',
+           "statue"=>'verified',
            "user_id"=>User::inRandomOrder()->first()->id,
            "location_id"=>Location::inRandomOrder()->first()->id,
 
 
    ],
    [
-   "description"=>['ar' => 'وصف', 'en' => 'description'],
-   "statue"=>'unverified',
+          "description"=> 'description',
+          "statue"=>'unverified',
           "user_id"=>User::inRandomOrder()->first()->id,
           "location_id"=>Location::inRandomOrder()->first()->id,
 

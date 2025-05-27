@@ -11,9 +11,7 @@ class Location extends Model
     /** @use HasFactory<\Database\Factories\LocationFactory> */
     use HasFactory;
     protected $guarded =['id'];
-  protected $casts = [
-  'name' => 'array',
-  ];
+
     public function reports()
     {
         return $this->hasMany(Report::class);
