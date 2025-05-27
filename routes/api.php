@@ -30,6 +30,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('refresh', [AuthController::class, 'refresh'])
         ->middleware('auth:sanctum');
 });
+
 Route::middleware('auth:sanctum')->group(function(){
    Route::get('/user',function(){
             return ;

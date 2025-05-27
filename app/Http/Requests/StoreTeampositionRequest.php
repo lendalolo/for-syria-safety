@@ -22,8 +22,8 @@ class StoreTeampositionRequest extends FormRequest
     public function rules(): array
     {
         return [
-             "name"=>['required','json','max:255'],
-             "description"=>['nullable','json'],
+            'name' => ['required', 'string', 'max:255', 'json'],
+            'description' => ['nullable', 'string', 'json'],
         ];
     }
 }

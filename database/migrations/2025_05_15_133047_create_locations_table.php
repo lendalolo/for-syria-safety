@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->nullable();
+            $table->String('name')->nullable();
             $table->float('lat');
             $table->float('lon');
             $table->enum('status', ['danger', 'warning'])->default('danger');

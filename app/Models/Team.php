@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Report;
@@ -9,6 +10,7 @@ use App\Models\Teamposition;
 use App\Models\TeamReport;
 use App\Models\Appointment;
 use App\Models\Unit;
+use Illuminate\Support\Facades\App;
 
 class Team extends Model
 {
@@ -45,5 +47,24 @@ class Team extends Model
     {
         return $this->hasMany(Compaign::class);
     }
-
+    public function name():Attribute{
+        return Attribute::make(
+            get: function ($value) {
+                $decoded = json_decode($value, true);
+                $locale = App::getLocale();
+                return $decoded[$locale] ?? null;
+            },
+            set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+        );
+    }
+    public function level():Attribute{
+        return Attribute::make(
+            get: function ($value) {
+                $decoded = json_decode($value, true);
+                $locale = App::getLocale();
+                return $decoded[$locale] ?? null;
+            },
+            set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+        );
+    }
 }

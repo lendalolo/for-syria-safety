@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Compaign;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\ToolCompaign;
 use App\Models\Donation;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
+
 class Tool extends Model
 {
 use HasFactory;
@@ -26,5 +29,14 @@ use HasFactory;
     public function donations(){
         return $this->hasMany(Donation::class);
     }
-
+    public function name():Attribute{
+        return Attribute::make(
+            get: function ($value) {
+                $decoded = json_decode($value, true);
+                $locale = App::getLocale();
+                return $decoded[$locale] ?? null;
+            },
+            set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+        );
+    }
 }

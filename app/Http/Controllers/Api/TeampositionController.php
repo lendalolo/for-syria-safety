@@ -19,12 +19,12 @@ class TeampositionController extends Controller
     {
         $locale = App::getLocale();
 
-        $teamPositions = Teamposition::with('teams')->get()
-            ->map(function ($item) use ($locale) {
-                $nameJson = json_decode($item->getAttributes()['name'], true);
-                $item->name = $nameJson[$locale] ?? null;
-                return $item;
-            });
+        $teamPositions = Teamposition::with('teams')->get();
+//            ->map(function ($item) use ($locale) {
+//                $nameJson = json_decode($item->getAttributes()['name'], true);
+//                $item->name = $nameJson[$locale] ?? null;
+//                return $item;
+//            });
 
         return response()->json(['teamPositions' => $teamPositions], 200);
     }
@@ -45,10 +45,10 @@ class TeampositionController extends Controller
 
         $locale = App::getLocale();
 
-        $teamposition = Teamposition::with('teams')->findOrFail($id); // get one record with relation
+        $teamposition = Teamposition::with('teams')->findOrFail($id);
 
-        $nameJson = json_decode($teamposition->getAttributes()['name'], true);
-        $teamposition->name = $nameJson[$locale] ?? null;
+//        $nameJson = json_decode($teamposition->getAttributes()['name'], true);
+//        $teamposition->name = $nameJson[$locale] ?? null;
 
         return response()->json(['teamposition' => $teamposition], 200);
     }

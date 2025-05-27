@@ -22,7 +22,7 @@ class StoreLocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>['required','json','max:255'],
+            "name"=>['required','String','max:255'],
             "lat"=>['required','string','max:255'],
             "lon"=>['required','string','max:255'],
             "status"=> 'required|string|in:safe,danger,warning',
