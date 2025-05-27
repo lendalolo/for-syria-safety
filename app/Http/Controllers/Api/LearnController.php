@@ -24,7 +24,23 @@ class LearnController extends Controller
      */
     public function store(StoreLearnRequest $request)
     {
-        $learn = Learn::create($request->validated());
+        $learn = Learn::create(
+            [
+                "name"=>$request->name,
+                "description"=>$request->description,
+                "type"=>$request->type,
+            ]);
+        $objectives = json_decode($request->objectives,true);
+
+
+         if(is_array($objectives)) {
+        foreach($objectives as $objective){
+             $learn->objective()->create([
+                                "name"=>$objective['name']??'',
+                                "description"=>$objective['description']??'',
+                                "type"=>$objective['type']??'',
+             ]);
+        }}
         if ($request->media) {
         $learn->addMediaFromRequest('media')->toMediaCollection('learns');
         }
