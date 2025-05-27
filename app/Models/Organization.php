@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\models\Compaign;
-use App\models\OrganizationCompaign;
+use App\Models\Compaign;
+use App\Models\OrganizationCompaign;
 class Organization extends Model
 {
     use HasFactory;
@@ -14,10 +14,10 @@ class Organization extends Model
     'name' => 'array',
     'description' => 'array',
     ];
-//    public function compaigns()
-//    {
-//        return $this->belongsToMany(Compaign::class);
-//    }
+    public function compaigns()
+    {
+        return $this->belongsToMany(Compaign::class);
+    }
     public function organizationCompaigns(){
         return $this->hasMany(OrganizationCompaign::class);
     }

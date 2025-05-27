@@ -13,7 +13,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        $organizations = Organization::with('organizationCompaigns','compaigns')->get();
+        $organizations = Organization::with('compaigns')->get();
         return response()->json(["organizations"=>$organizations]);
     }
 
@@ -23,7 +23,7 @@ class OrganizationController extends Controller
     public function store(StoreOrganizationRequest $request)
     {
         $organization = Organization::create($request->validated());
-        return response()->json(["organization"=>$organization]);
+        return response()->json(["organization"=>$organization->load('compaigns')]);
     }
 
     /**
@@ -31,7 +31,7 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
-        return response()->json(["organization"=>$organization->load('compaigns','organizationCompaigns')]);
+        return response()->json(["organization"=>$organization->load('compaigns')]);
     }
 
     /**
@@ -40,7 +40,7 @@ class OrganizationController extends Controller
     public function update(UpdateOrganizationRequest $request, Organization $organization)
     {
         $organization->update($request->all());
-        return response()->json(["organization"=>$organization]);
+        return response()->json(["organization"=>$organization->load('compaigns')]);
 
     }
 

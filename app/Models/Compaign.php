@@ -42,10 +42,10 @@ return $this->belongsToMany(Tool::class);
  public function toolCompaigns(){
  return $this->hasMany(ToolCompaign::class);
  }
-// public function organizations(){
-// return $this->belongsToMany(Organization::class);
-// }
- public function organizationCompaign(){
+public function organizations(){
+return $this->belongsToMany(Organization::class);
+}
+ public function organizationCompaigns(){
  return $this->hasMany(OrganizationCompaign::class);
  }
  public function step(){
