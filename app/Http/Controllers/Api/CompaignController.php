@@ -61,7 +61,7 @@ class CompaignController extends Controller
         // dd($compaign->load('steps','location','media','team.users'));
         // dd($request->steps);
         // dd('$compaign->steps()');
-        return response()->json(['compaign' => $compaign->load('team.users ','location','media','steps')]);
+        return response()->json(['compaign' => $compaign->load('location','media','steps')]);
     }
 
     /**
