@@ -48,7 +48,7 @@ return $this->belongsToMany(Organization::class);
  public function organizationCompaigns(){
  return $this->hasMany(OrganizationCompaign::class);
  }
- public function step(){
+ public function steps(){
  return $this->hasMany(Step::class);
  }
 }

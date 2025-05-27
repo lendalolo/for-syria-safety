@@ -24,15 +24,15 @@ class StoreCompaignRequest extends FormRequest
     public function rules(): array
     {$locale = App::getLocale();
         return [
-            "name"=>['required','json','max:255',
-                Rule::unique('compaigns')->where("JSON_UNQUOTE(JSON_EXTRACT(name, '$.\"$locale\"')) = ?",
-                    [$this->input("name.$locale")])],
+            "name"=>['required','json'],
+                // Rule::unique('compaigns')->where("JSON_UNQUOTE(JSON_EXTRACT(name, '$.\"$locale\"')) = ?",
+                //     [$this->input("name.$locale")])],
             "description"=>['nullable','json'],
             "start_date"=>['required','date'],
             "end_date"=>['required','date'],
             "location_id"=>['required','exists:locations,id'],
             "team_id"=>['required','exists:teams,id'],
-            "step_id"  => ['required','exists:steps,id'],
+            // "step_id"  => ['required','exists:steps,id'],
         ];
     }
 }
