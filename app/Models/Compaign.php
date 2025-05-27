@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Location;
 use App\Models\ToolCompaign;
 use App\Models\Tool;
+use Illuminate\Support\Facades\App;
 use App\Models\Step;
 use App\Models\Organization;
 use App\Models\Team;
@@ -24,6 +26,36 @@ class Compaign extends Model implements HasMedia
   'description' => 'array',
   'article' => 'array',
   ];
+   public function name():Attribute{
+   return Attribute::make(
+   get: function ($value) {
+   $decoded = json_decode($value, true);
+   $locale = App::getLocale();
+   return $decoded[$locale] ?? null;
+   },
+   set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+   );
+   }
+   public function description():Attribute{
+   return Attribute::make(
+   get: function ($value) {
+   $decoded = json_decode($value, true);
+   $locale = App::getLocale();
+   return $decoded[$locale] ?? null;
+   },
+   set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+   );
+   }
+      public function article():Attribute{
+            return Attribute::make(
+            get: function ($value) {
+            $decoded = json_decode($value, true);
+            $locale = App::getLocale();
+            return $decoded[$locale] ?? null;
+            },
+            set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+            );
+      }
  public function location()
  {
  return $this->belongsTo(Location::class);

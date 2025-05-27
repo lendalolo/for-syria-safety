@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Report;
-use Illuminate\Support\Facades\App;
 
 class Reward extends Model
 {
@@ -16,6 +16,7 @@ class Reward extends Model
  protected $casts = [
  'description' => 'array',
  ];
+
     public function report(){
         return $this->belongsTo(Report::class);
     }

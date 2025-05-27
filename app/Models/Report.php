@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Reward;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Location;
 use App\Models\Team;
 use App\Models\TeamReport;
@@ -20,9 +22,6 @@ class Report extends Model
         'user_id',
         'location_id',
     ];
-      protected $casts = [
-      'description' => 'array',
-      ];
 
     public function reward()
     {

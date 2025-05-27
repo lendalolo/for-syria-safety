@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 use App\Models\Team;
 class Appointment extends Model
 {
@@ -13,6 +16,16 @@ class Appointment extends Model
             protected $casts = [
             'mission' => 'array',
             ];
+             public function mission():Attribute{
+             return Attribute::make(
+             get: function ($value) {
+             $decoded = json_decode($value, true);
+             $locale = App::getLocale();
+             return $decoded[$locale] ?? null;
+             },
+             set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+             );
+             }
         public function team()
         {
                  return $this->belongsTo(Team::class);

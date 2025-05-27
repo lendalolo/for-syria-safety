@@ -17,6 +17,7 @@ class Organization extends Model
    'name' => 'array',
    'description' => 'array',
    ];
+
     public function compaigns()
     {
         return $this->hasMany(OrganizationCompaign::class);

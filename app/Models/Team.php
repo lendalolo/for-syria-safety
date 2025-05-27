@@ -21,6 +21,7 @@ class Team extends Model
     'level' => 'array',
 
     ];
+
     public function unit()
     {
     return $this->belongsTo(Unit::class);
