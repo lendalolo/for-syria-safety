@@ -22,7 +22,7 @@ class UpdateReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "description"=>['sometimes','json'],
+            "description"=>['sometimes','String'],
             "user_id"=>['sometimes','exists:users,id'],
             "location_id"=>['sometimes','exists:locations,id'],
             "statue"=>['string','in:verified,processing,unverified'],

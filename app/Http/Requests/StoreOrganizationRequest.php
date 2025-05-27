@@ -22,8 +22,9 @@ class StoreOrganizationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>["require","json","max:255"],
-            "description"=>["require","json"],
+
+            "name"=>['required',"json","max:255"],
+            "description"=>['required',"json"],
         ];
     }
 }

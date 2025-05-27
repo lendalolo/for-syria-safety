@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Http\Requests\StoreOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;

@@ -19,11 +19,11 @@ class Compaign extends Model implements HasMedia
     /** @use HasFactory<\Database\Factories\CompaignFactory> */
     use HasFactory,InteractsWithMedia;
     protected $guarded = ['id'];
-   protected $casts = [
-   'name' => 'array',
-   'description' => 'array',
-   'article' => 'array',
-   ];
+//   protected $casts = [
+//   'name' => 'array',
+//   'description' => 'array',
+//   'article' => 'array',
+//   ];
  public function location()
  {
  return $this->belongsTo(Location::class);
@@ -42,12 +42,9 @@ return $this->belongsToMany(Tool::class);
  public function toolCompaigns(){
  return $this->hasMany(ToolCompaign::class);
  }
-public function organizations(){
-return $this->belongsToMany(Organization::class);
+public function OrganizationCompaign(){
+return $this->hasMany(OrganizationCompaign::class);
 }
- public function organizationCompaigns(){
- return $this->hasMany(OrganizationCompaign::class);
- }
  public function steps(){
  return $this->hasMany(Step::class);
  }
