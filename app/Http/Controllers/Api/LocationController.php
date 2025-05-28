@@ -16,7 +16,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $location = Location::with('reports.teamReports.team','compaigns')->get();
+        $location = Location::with('reports.teamReports.team','compaigns.tools',)->get();
         return response()->json(['locations' => $location]);
     }
 
@@ -26,7 +26,7 @@ class LocationController extends Controller
     public function store(StoreLocationRequest $request)
     {
         $location = Location::create($request->validated());
-        return response()->json(['locations' => $location->load('reports','compaigns')]);
+        return response()->json(['locations' => $location->load('reports','compaigns.tools')]);
     }
 
     /**
@@ -35,7 +35,7 @@ class LocationController extends Controller
     public function show(Location $location)
     {
 
-        return response()->json(['location' => $location->load('reports','compaigns')], 200);
+        return response()->json(['location' => $location->load('reports','compaigns.tools')], 200);
 
     }
 
@@ -45,7 +45,7 @@ class LocationController extends Controller
     public function update(UpdateLocationRequest $request, Location $location)
     {
         $location->update($request->validated());
-        return response()->json(['location' => $location->load('reports','compaigns')]);
+        return response()->json(['location' => $location->load('reports','compaigns.tools')]);
     }
 
     /**

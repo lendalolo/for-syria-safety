@@ -18,11 +18,11 @@ use HasFactory;
        protected $casts = [
        'name' => 'array',
        ];
-   public function compaigns()
-   {
-       return $this->belongsToMany(Compaign::class);
-   }
-    public function toolCompaigns()
+//   public function compaigns()
+//   {
+//       return $this->belongsToMany(ToolCompaign::class);
+//   }
+    public function compaigns()
     {
     return $this->hasMany(ToolCompaign::class);
     }
