@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateToolRequest;
 // use Illuminate\Routing\Controller;
 use App\Models\Donation;
 use App\Models\Teamposition;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
@@ -27,11 +28,13 @@ class DonationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreDonationRequest $request)
-    {
-        $donation = Donation::create($request->validated());
+    {   $user_id = Auth::user()->id;
+       $validate =$request->validated();
+        $validate['user_id'] = $user_id;
+        $donation = Donation::create($validate);
         return response()->json(['donation' => $donation->load('user','tool')
         ,'message' =>  __('Operation completed successfully'),
-                //'Donation '
+
         ], 201);
     }
 

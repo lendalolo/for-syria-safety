@@ -22,7 +22,7 @@ class StoreDonationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id"=>['required','exists:users,id'],
+
             "tool_id"=>['required','exists:tools,id'],
             "date"=>['required','date'],
             "cost"=>['required'],
