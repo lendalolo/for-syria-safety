@@ -14,6 +14,7 @@ use App\Models\Step;
 use App\Models\Organization;
 use App\Models\Team;
 use App\Models\OrganizationCompaign;
+use Illuminate\Support\Facades\Route;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 class Compaign extends Model implements HasMedia
@@ -27,19 +28,12 @@ class Compaign extends Model implements HasMedia
   'description' => 'array',
   'article' => 'array',
   ];
-    public function shouldReturnRawJson(){
-        if(!app()->runningInConsole() && $request = app(Request::class)){
-            $action = $request->route()->getActionMethod();
 
-            return $action ==='show';
-        }
-        return false;
-    }
    public function name():Attribute{
    return Attribute::make(
    get: function ($value) {
    $decoded = json_decode($value, true);
-           if($this->shouldReturnRawJson()){
+           if (Route::currentRouteName() === 'compaigns.show') {
                return $decoded;
            }
    $locale = App::getLocale();
@@ -52,7 +46,7 @@ class Compaign extends Model implements HasMedia
    return Attribute::make(
    get: function ($value) {
    $decoded = json_decode($value, true);
-           if($this->shouldReturnRawJson()){
+           if (Route::currentRouteName() === 'compaigns.show') {
                return $decoded;
            }
    $locale = App::getLocale();
@@ -65,7 +59,7 @@ class Compaign extends Model implements HasMedia
             return Attribute::make(
             get: function ($value) {
             $decoded = json_decode($value, true);
-                    if($this->shouldReturnRawJson()){
+                    if (Route::currentRouteName() === 'compaigns.show') {
                         return $decoded;
                     }
             $locale = App::getLocale();
