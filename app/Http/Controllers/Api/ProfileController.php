@@ -33,9 +33,9 @@ class ProfileController extends Controller
     {
         $points = 0;
         $verified_reports=0;
-        $reports = Report::with('reward')->where('user_id',auth()->id())->get();
+        $reports = Report::with('reward','location')->where('user_id',auth()->id())->get();
         $total_reports = Report::with('reward')->where('user_id',auth()->id())->get()->count();
-        $user = User::with('media','team','donations')->where('id', auth()->id())->first();
+        $user = User::with('media','team','donations.tool')->where('id', auth()->id())->first();
         foreach($reports as $report){
                 if($report->reward)
                 $points = $points + $report->reward->point;
