@@ -15,7 +15,7 @@ class CompaignController extends Controller
      */
     public function index()
     {
-        $compaigns = Compaign::with(['team.users','location','media','toolCompaigns','organizationCompaign','steps'])->get();
+        $compaigns = Compaign::with(['team.users','location','media','tools','organizationCompaign','steps'])->get();
         return response()->json(['compaigns' => $compaigns], 200);
     }
 
@@ -69,7 +69,7 @@ class CompaignController extends Controller
      */
     public function show(Compaign $compaign)
     {
-        return response()->json(['compaign' => $compaign->load('team','location','media','toolCompaigns','organizationCompaign','steps')], 200);
+        return response()->json(['compaign' => $compaign->load('team','location','media','tools','organizationCompaign','steps')], 200);
     }
 
     /**

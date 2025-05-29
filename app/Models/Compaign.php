@@ -13,6 +13,7 @@ use App\Models\Step;
 use App\Models\Organization;
 use App\Models\Team;
 use App\Models\OrganizationCompaign;
+use Illuminate\Support\Facades\Route;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 class Compaign extends Model implements HasMedia
@@ -46,10 +47,14 @@ class Compaign extends Model implements HasMedia
    set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
    );
    }
+
       public function article():Attribute{
             return Attribute::make(
             get: function ($value) {
             $decoded = json_decode($value, true);
+            if (Route::currentRouteName() === 'compaigns.show') {
+                return $decoded;
+            }
             $locale = App::getLocale();
             return $decoded[$locale] ?? null;
             },
