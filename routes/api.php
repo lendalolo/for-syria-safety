@@ -84,6 +84,8 @@ Route::middleware(["auth:sanctum","lang"])->group(function(){
     Route::apiResource('/user',UserController::class);
     Route::apiResource('/donations',DonationController::class);
     Route::Put('/RegerterInTeam',[UserController::class,'RegerterInTeam']);
+    Route::get('/getMyTeamReports',[UserController::class,'getMyTeamReports']);
+    //getMyTeamReports
 
 });
 Route::middleware(["lang"])->group(function(){

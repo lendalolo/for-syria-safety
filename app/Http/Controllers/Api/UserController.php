@@ -62,7 +62,12 @@ class UserController extends Controller
         $user->update($request->all());
         return response()->json(['user' => $user->load('team','reports')]);
     }
-
+    public function getMyTeamReports()
+    {
+        $user_id =Auth::user()->id;
+        $userTeamReports = User::findOrFail($user_id)->with('team.teamReport.report')->get();
+        return response()->json(['userTeamReports' => $userTeamReports], 200);
+    }
 //    public function myTeam()
 //    {
 //        $user_id = Auth::user()->id;
