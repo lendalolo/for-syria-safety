@@ -25,8 +25,9 @@ class UpdateCompaignRequest extends FormRequest
     {  $locale = App::getLocale();
         return [
                 "name"=>['sometimes','json','max:255',
-                    Rule::unique('compaigns')->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(name, '$.\"$locale\"')) = ?",
-                        [$this->input("name.$locale")])],
+//                    Rule::unique('compaigns')->where("JSON_UNQUOTE(JSON_EXTRACT(name, '$locale')) = ?",
+//                        [$this->input("name.$locale")])
+                ],
                 "description"=>['sometimes','json'],
                 "start_date"=>['sometimes','date'],
                 "end_date"=>['sometimes','date'],
