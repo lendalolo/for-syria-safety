@@ -64,7 +64,7 @@ Route::middleware(["auth:sanctum",'is_admin','lang'])->prefix('admin')->group(fu
     Route::apiResource('/organization_compaigns',OrganizationCompaignController::class);
     Route::apiResource('/users',UserController::class);
     Route::get('/static',[StaticController::class,'static']);
-
+    Route::put('/changeReportStatus/{reportId}',[ReportController::class,'changeReportStatus']);
 
    // Route::get('/myTeams',[TeamController::class,'myTeam']);
 
@@ -85,6 +85,7 @@ Route::middleware(["auth:sanctum","lang"])->group(function(){
     Route::apiResource('/donations',DonationController::class);
     Route::Put('/RegerterInTeam',[UserController::class,'RegerterInTeam']);
     Route::get('/getMyTeamReports',[UserController::class,'getMyTeamReports']);
+
     //getMyTeamReports
 
 });

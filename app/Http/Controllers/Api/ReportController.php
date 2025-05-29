@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 
+use App\Http\Requests\ChangeReportStatusUpdate;
 use App\Models\Report;
 use App\Models\Location;
 use App\Http\Requests\StoreReportRequest;
@@ -80,5 +81,12 @@ class ReportController extends Controller
         $report->delete();
         return response()->json(['status' => 'success']);
     }
+    public function changeReportStatus(ChangeReportStatusUpdate $request, int $id)
+    {
+        $report =Report::findOrFail($id);
+        $report->update($request->validated());
+        return response()->json(['report' => $report->load('user','reward','location','teamReports')]);
+    }
+
 
 }
