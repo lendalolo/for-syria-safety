@@ -21,12 +21,12 @@ use HasFactory;
        ];
    public function compaigns()
    {
-       return $this->belongsToMany(Compaign::class);
+       return $this->hasMany(Compaign::class);
    }
-    public function toolCompaigns()
-    {
-    return $this->hasMany(ToolCompaign::class);
-    }
+//    public function toolCompaigns()
+//    {
+//    return $this->hasMany(ToolCompaign::class);
+//    }
     public function donations(){
         return $this->hasMany(Donation::class);
     }
