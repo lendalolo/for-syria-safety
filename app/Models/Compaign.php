@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Location;
+use Illuminate\Http\Request;
 use App\Models\ToolCompaign;
 use App\Models\Tool;
 use Illuminate\Support\Facades\App;
@@ -26,10 +27,23 @@ class Compaign extends Model implements HasMedia
   'description' => 'array',
   'article' => 'array',
   ];
+                public function shouldReturnRawJson(){
+                if(!app()->runningInConsole() && $request = app(Request::class)){
+                $action = $request->route()->getActionMethod();
+
+                return $action ==='show';
+                }
+                return false;
+                }
+
+
    public function name():Attribute{
    return Attribute::make(
    get: function ($value) {
    $decoded = json_decode($value, true);
+    if($this->shouldReturnRawJson()){
+    return $decoded;
+    }
    $locale = App::getLocale();
    return $decoded[$locale] ?? null;
    },
@@ -40,6 +54,9 @@ class Compaign extends Model implements HasMedia
    return Attribute::make(
    get: function ($value) {
    $decoded = json_decode($value, true);
+         if($this->shouldReturnRawJson()){
+         return $decoded;
+         }
    $locale = App::getLocale();
    return $decoded[$locale] ?? null;
    },
@@ -50,6 +67,9 @@ class Compaign extends Model implements HasMedia
             return Attribute::make(
             get: function ($value) {
             $decoded = json_decode($value, true);
+           if($this->shouldReturnRawJso0n()){
+           return $decoded;
+           }
             $locale = App::getLocale();
             return $decoded[$locale] ?? null;
             },
@@ -68,10 +88,10 @@ class Compaign extends Model implements HasMedia
  {
  return $this->belongsTo(Team::class);
  }
-//public function tools(){
-//return $this->belongsToMany(ToolCompaign::class);
-//}
- public function tools(){
+public function tools(){
+return $this->belongsToMany(Tool::class);
+}
+ public function toolCompaigns(){
  return $this->hasMany(ToolCompaign::class);
  }
 public function OrganizationCompaign(){
