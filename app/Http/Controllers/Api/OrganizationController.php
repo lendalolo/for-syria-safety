@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use App\Models\Organization;
 use App\Http\Requests\StoreOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
+
 class OrganizationController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class OrganizationController extends Controller
     public function index()
     {
         $organizations = Organization::with('compaigns')->get();
-        return response()->json(["organizations"=>$organizations]);
+        return response()->json(["organizations" => $organizations]);
     }
 
     /**
@@ -22,7 +24,11 @@ class OrganizationController extends Controller
     public function store(StoreOrganizationRequest $request)
     {
         $organization = Organization::create($request->validated());
-        return response()->json(["organization"=>$organization->load('compaigns')]);
+
+        if (!empty($request->compaigns)) {
+            $organization->compaignss()->attach($request->compaigns);
+        }
+        return response()->json(["organization" => $organization->load('compaigns')]);
     }
 
     /**
@@ -30,7 +36,7 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
-        return response()->json(["organization"=>$organization->load('compaigns')]);
+        return response()->json(["organization" => $organization->load('compaigns')]);
     }
 
     /**
@@ -39,8 +45,10 @@ class OrganizationController extends Controller
     public function update(UpdateOrganizationRequest $request, Organization $organization)
     {
         $organization->update($request->all());
-        return response()->json(["organization"=>$organization->load('compaigns')]);
-
+        if (!empty($request->compaigns)) {
+            $organization->compaignss()->attach($request->compaigns);
+        }
+        return response()->json(["organization" => $organization->load('compaigns')]);
     }
 
     /**
@@ -50,6 +58,5 @@ class OrganizationController extends Controller
     {
         $organization->delete();
         return response()->json(['status' => 'success']);
-
     }
 }

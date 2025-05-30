@@ -13,53 +13,60 @@ use Illuminate\Support\Facades\App;
 class Organization extends Model
 {
     use HasFactory;
-    protected $guarded =['id'];
-   protected $casts = [
-   'name' => 'array',
-   'description' => 'array',
-   ];
+    protected $guarded = ['id'];
+    protected $casts = [
+        'name' => 'array',
+        'description' => 'array',
+    ];
 
     public function compaigns()
     {
         return $this->hasMany(OrganizationCompaign::class);
     }
-        public function shouldReturnRawJson(){
-        if(!app()->runningInConsole() && $request = app(Request::class)){
-        $action = $request->route()->getActionMethod();
+    public function compaignss()
+    {
+        return $this->belongsToMany(Compaign::class, "organization_compaigns");
+    }
+    public function shouldReturnRawJson()
+    {
+        if (!app()->runningInConsole() && $request = app(Request::class)) {
+            $action = $request->route()->getActionMethod();
 
-        return $action ==='show';
+            return $action === 'show';
         }
         return false;
-        }
+    }
 
 
 
-        public function name():Attribute{
-        return Attribute::make(
-        get: function ($value) {
-        $decoded = json_decode($value, true);
-        if($this->shouldReturnRawJson()){
-        return $decoded;
-        }
-        $locale = App::getLocale();
-        return $decoded[$locale] ?? null;
-        },
-        set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
-        );
-        }
-
-
-    public function description():Attribute{
+    public function name(): Attribute
+    {
         return Attribute::make(
             get: function ($value) {
                 $decoded = json_decode($value, true);
-                  if($this->shouldReturnRawJson()){
-                  return $decoded;
-                  }
+                if ($this->shouldReturnRawJson()) {
+                    return $decoded;
+                }
                 $locale = App::getLocale();
                 return $decoded[$locale] ?? null;
             },
-            set: fn ($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+            set: fn($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
+        );
+    }
+
+
+    public function description(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                $decoded = json_decode($value, true);
+                if ($this->shouldReturnRawJson()) {
+                    return $decoded;
+                }
+                $locale = App::getLocale();
+                return $decoded[$locale] ?? null;
+            },
+            set: fn($value) => is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE) : $value
         );
     }
 }
